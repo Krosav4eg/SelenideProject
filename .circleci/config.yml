@@ -150,7 +150,7 @@ workflows:
   schedule-workflow:
     triggers:
       - schedule:
-          cron: "1 5 * * 2,7"
+          cron: "0 5 * * 2,7"
           filters:
             branches:
               only:
