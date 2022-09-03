@@ -74,7 +74,7 @@ workflows:
     jobs:
       - build:
         schedule:
-          cron: "10 * * 2,6"
+          cron: "10 * * 6,7"
           filters:
             branches:
               only:
