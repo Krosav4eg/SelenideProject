@@ -12,7 +12,7 @@ parameters:
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:8u242-buster
+      - image: circleci/openjdk:8-jdk-browsers
 
     working_directory: ~/SeleniumProject
 
@@ -150,7 +150,7 @@ workflows:
   schedule-workflow:
     triggers:
       - schedule:
-          cron: "0 5 * * 2,6"
+          cron: "1 5 * * 2,6"
           filters:
             branches:
               only:
