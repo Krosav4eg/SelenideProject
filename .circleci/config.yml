@@ -12,7 +12,7 @@ jobs:
     docker:
       - image: circleci/openjdk:8-jdk-browsers
 
-    working_directory: ~/listings-ui-api-automation
+    working_directory: ~/SeleniumProject
 
     environment:
       MAVEN_OPTS: -Xmx3200m
