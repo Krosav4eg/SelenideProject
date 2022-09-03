@@ -77,6 +77,3 @@ workflows:
             branches:
               only:
                 - master
-    jobs:
-      - build:
-          SendReportToJira: true
