@@ -24,7 +24,7 @@ public class NotebooksPageTest extends BaseTest {
     @Severity(SeverityLevel.MINOR)
     @TmsLink("2")
     @Description("Verify goods title")
-    @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Test()
     public void checkNotebooksGoodsTitles() {
         String searchWord = "Ноутбук";
         mainPage.clickOnCatalogMenu();

@@ -3,6 +3,7 @@ import com.google.common.collect.ImmutableMap;
 import fragments.GoodItemFragment;
 import fragments.HeaderFragment;
 import fragments.MenuCategoriesFragment;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Step;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.support.PageFactory;
@@ -39,6 +40,10 @@ public class BaseTest {
                         .build());
     }
 
+    @BeforeClass
+    public void setUp() {
+        WebDriverManager.chromedriver().avoidOutputTree().forceDownload().setup();
+    }
 
     @BeforeMethod(alwaysRun = true)
     public void mainSteps() {
@@ -57,7 +62,7 @@ public class BaseTest {
         goodItemFragment = PageFactory.initElements(getDriver(), GoodItemFragment.class);
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void closeBrowser() {
         BrowserFactory.closeBrowser();
     }
