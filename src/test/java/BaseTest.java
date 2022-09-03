@@ -42,6 +42,7 @@ public class BaseTest {
 
     @BeforeClass
     public void setUp() {
+        WebDriverManager.chromedriver().cachePath("target");
         WebDriverManager.chromedriver().avoidOutputTree().forceDownload().setup();
     }
 
