@@ -1,0 +1,9 @@
+/.idea/
+**/target/
+allure-results/
+.allure/
+logs/
+build/
+listings-ui-api-automation.iml
+*.html
+*.png

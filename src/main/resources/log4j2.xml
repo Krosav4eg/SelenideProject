@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Properties>
+    <Property name="basePath">./target/log4j-logs</Property>
+  </Properties>
+  <Appenders>
+    <RollingFile name="File" fileName="${basePath}/printlogs.log" filePattern="${basePath}/printlogs__%d{yyyy-MM-dd_HH-mm-ss}.log" append="false">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level - %msg%n"/>
+      <SizeBasedTriggeringPolicy size="5000" />
+    </RollingFile>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level - %msg%n"/>
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Root level="info">
+      <AppenderRef ref="File"/>
+      <AppenderRef ref="Console"/>
+    </Root>
+  </Loggers>
+</Configuration>
