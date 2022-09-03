@@ -71,7 +71,7 @@ workflows:
 
   schedule-workflow:
     triggers:
-      jobs:
+    jobs:
       - schedule:
           cron: "10 * * 2,6"
           filters:
