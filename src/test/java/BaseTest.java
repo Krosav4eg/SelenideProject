@@ -51,8 +51,8 @@ public class BaseTest {
         BrowserFactory.getInstance().createDriverInstance(PROPS.BASE_BROWSER());
         openUrl(PROPS.BASE_URL());
         initPageElements();
-        getDriver().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         waitForPageLoad();
+        getDriver().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
     private void initPageElements() {
