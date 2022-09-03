@@ -17,10 +17,8 @@ public class BrowserFactory {
     private static volatile BrowserFactory instance;
 
     public static BrowserFactory getInstance() {
-        BrowserFactory localInstance = instance;
         if (instance == null) {
             synchronized (BrowserFactory.class) {
-                localInstance = instance;
                 if (instance == null) {
                     instance = new BrowserFactory();
                 }
