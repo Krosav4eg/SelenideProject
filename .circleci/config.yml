@@ -95,15 +95,14 @@ jobs:
       - save_cache:
           paths:
             - ~/.m2
-
           key: v1-dependencies-{{ checksum "pom.xml" }}
       # running tests
       - run:
           name: Run tests
           command: mvn
-            -Dsuite=<< pipeline.parameters.suite >>
+            -DxmlSuiteFile=<< pipeline.parameters.suite >>
             -DNightlyRunNotify=true
-            clean verify site
+            clean test
           no_output_timeout: 40m
 
       - run:
@@ -125,19 +124,20 @@ jobs:
             tar -cvf artifacts-<< pipeline.parameters.suite >>.tar target/;
 
       - store_artifacts:
+          name: Upload archived artifacts
           path: artifacts-<< pipeline.parameters.suite >>.tar
 
       - run:
           name: Allure report generation (allure-results -> allure-report)
           command: mvn io.qameta.allure:allure-maven:report
           when: always
+
       - store_artifacts:
+          name: Upload Allure report
           path: target/site/allure-maven-plugin
           destination: Report/Allure
 
-
 workflows:
-  version: 2
 
   commit-workflow:
     jobs:
@@ -150,7 +150,7 @@ workflows:
   schedule-workflow:
     triggers:
       - schedule:
-          cron: "1 5 * * 6,7"
+          cron: "1 5 * * 2,7"
           filters:
             branches:
               only:
