@@ -43,11 +43,11 @@ jobs:
           name: Archive artifacts
           when: always
           command:
-            tar -cvf artifacts-<< pipeline.parameters.suite >>-<< pipeline.parameters.env >>.tar target/;
+            tar -cvf artifacts-<< pipeline.parameters.suite >>.tar target/;
 
       - store_artifacts:
           name: Upload archived artifacts
-          path: artifacts-<< pipeline.parameters.suite >>-<< pipeline.parameters.env >>.tar
+          path: artifacts-<< pipeline.parameters.suite >>.tar
 
       - run:
           name: Allure report generation (allure-results -> allure-report)
