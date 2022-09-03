@@ -12,7 +12,7 @@ public class NotebooksPageTest extends BaseTest {
     @Severity(SeverityLevel.MINOR)
     @TmsLink("1")
     @Description("Verify title of application")
-    @Test()
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void checkRedirectionToNotebooksPage()  {
         mainPage.clickOnCatalogMenu();
         mainPage.getMenuCategoriesFragment().clickOnNoteBooksCategories();
@@ -24,7 +24,7 @@ public class NotebooksPageTest extends BaseTest {
     @Severity(SeverityLevel.MINOR)
     @TmsLink("2")
     @Description("Verify goods title")
-    @Test()
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void checkNotebooksGoodsTitles() {
         String searchWord = "Ноутбук";
         mainPage.clickOnCatalogMenu();
