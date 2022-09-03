@@ -1,14 +1,77 @@
 version: 2.1
-orbs:
-  slack: circleci/slack@3.4.2
+
 parameters:
   suite:
     type: string
     default: SmokeSuite
+  NightlyRunNotify:
+    type: boolean
+    default: true
 
 jobs:
   build:
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
 
+    working_directory: ~/SeleniumProject
+
+    environment:
+      MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            - v1-dependencies-
+
+      - run: mvn dependency:go-offline
+
+      - save_cache:
+          paths:
+            - ~/.m2
+
+          key: v1-dependencies-{{ checksum "pom.xml" }}
+
+      - run:
+          name: Run tests
+          command: mvn
+            -DxmlSuiteFile=<< pipeline.parameters.suite >>
+            clean test
+          no_output_timeout: 40m
+
+      - run:
+          name: Allure archive download
+          command: curl -L https://github.com/allure-framework/allure2/releases/download/2.13.1/allure-commandline-2.13.1.zip -o /tmp/allure.zip
+      - run:
+          name: Archive extraction
+          command: unzip /tmp/allure.zip
+      - run:
+          name: Allure installation
+          command: sudo mv allure-2.13.1 /usr/local/share/allure
+      - run:
+          name: Allure binary symlinking
+          command: sudo ln -s /usr/local/share/allure/bin/allure /usr/local/bin/allure
+      - run:
+          name: Archive artifacts
+          when: always
+          command:
+            tar -cvf artifacts-<< pipeline.parameters.suite >>.tar target/;
+
+      - store_artifacts:
+          path: artifacts-<< pipeline.parameters.suite >>.tar
+
+      - run:
+          name: Allure report generation (allure-results -> allure-report)
+          command: mvn io.qameta.allure:allure-maven:report
+          when: always
+      - store_artifacts:
+          path: target/site/allure-maven-plugin
+          destination: Report/Allure
+
+  # this one triggers on MASTER branch on 4 AM UTC every day
+  nightly_run:
     docker:
       - image: circleci/openjdk:8-jdk-browsers
 
@@ -68,3 +131,14 @@ workflows:
             branches:
               only:
                 - master
+
+  schedule-workflow:
+    triggers:
+      - schedule:
+          cron: "1 5 * * 1,6"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - nightly_run
