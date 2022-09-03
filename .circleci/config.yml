@@ -68,3 +68,13 @@ workflows:
             branches:
               only:
                 - master
+
+  schedule-workflow:
+    triggers:
+      jobs:
+      - schedule:
+          cron: "10 * * 2,6"
+          filters:
+            branches:
+              only:
+                - master
