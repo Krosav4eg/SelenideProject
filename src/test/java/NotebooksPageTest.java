@@ -16,7 +16,7 @@ public class NotebooksPageTest extends BaseTest {
     public void checkRedirectionToNotebooksPage()  {
         mainPage.clickOnCatalogMenu();
         mainPage.getMenuCategoriesFragment().clickOnNoteBooksCategories();
-        Assert.assertEquals(getCurrentUrl(),"https://rozetka.com.ua/ua/notebooks/c80004/",
+        Assert.assertEquals(getCurrentUrl(),"https://rozetka.com.ua/ua/",
                 "Current notebooks page url isn't equal expected: ");
 
     }
