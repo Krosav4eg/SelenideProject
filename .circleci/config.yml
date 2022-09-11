@@ -7,6 +7,9 @@ parameters:
   NightlyRunNotify:
     type: boolean
     default: true
+  NotifyTrigger:
+      type: boolean
+      default: true
 
 jobs:
   build:
@@ -134,6 +137,9 @@ jobs:
 workflows:
 
   commit-workflow:
+    when:
+      and:
+        - equal: [ true, << pipeline.parameters.NotifyTrigger >> ]
     jobs:
       - build:
           filters:
