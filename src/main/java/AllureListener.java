@@ -1,3 +1,4 @@
+import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Attachment;
 import lombok.SneakyThrows;
 import org.openqa.selenium.OutputType;
@@ -17,8 +18,8 @@ public class AllureListener implements ITestListener {
 
 
     @Attachment
-    public byte[] saveFailureScreen(WebDriver driver) {
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    public byte[] saveFailureScreen() {
+        return ((TakesScreenshot) WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES);
     }
 
     @Override
@@ -35,7 +36,7 @@ public class AllureListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult iTestResult) {
         setTestStatus(iTestResult);
-        saveFailureScreen(getDriver());
+        saveFailureScreen();
     }
 
     @Override

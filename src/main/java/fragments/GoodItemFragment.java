@@ -1,27 +1,25 @@
 package fragments;
 
+import com.codeborne.selenide.ElementsCollection;
 import lombok.Getter;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
+import static com.codeborne.selenide.Selectors.byCssSelector;
+import static com.codeborne.selenide.Selenide.$$;
+import static helpers.ActionHelper.checkThatAllElementsAreVisible;
+import static helpers.ActionHelper.checkThatElementCollectionsHasSize;
 
-import static driver.WebDriverWaits.waitForElementCollectionIsVisible;
 
 @Getter
-@FindBy(css = "div.goods-tile__inner")
-public class GoodItemFragment extends BaseFragment {
+public class GoodItemFragment {
+    ElementsCollection goodsBodyItem = $$(byCssSelector("a.goods-tile__picture.ng-star-inserted"));
+    ElementsCollection goodsTitle = $$(byCssSelector("span.goods-tile__title"));
 
-    @FindBy(css = "span.goods-tile__title")
-    List<WebElement> godsTitle;
-
-    public GoodItemFragment(WebDriver webDriver) {
-        super(webDriver);
+    public void witForAllGoodsBodyItemsArePresent() {
+        checkThatAllElementsAreVisible(goodsBodyItem);
     }
 
-    public void witForAllGoodsItemsArePresent() {
-        waitForElementCollectionIsVisible(godsTitle);
+    public void checkSizeAllGoodsBodyItems(int elementsSize) {
+         checkThatElementCollectionsHasSize(goodsBodyItem,elementsSize);
     }
 
 }

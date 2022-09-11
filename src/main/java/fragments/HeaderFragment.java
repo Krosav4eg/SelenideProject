@@ -1,34 +1,21 @@
 package fragments;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import com.codeborne.selenide.SelenideElement;
 
-import static driver.WebElementInteractions.clickOnElement;
 
-@FindBy(css = ".header")
-public class HeaderFragment extends BaseFragment{
+import static com.codeborne.selenide.Selectors.byCssSelector;
+import static com.codeborne.selenide.Selenide.$;
 
-    @FindBy(css="#fat-menu")
-    WebElement catalogMenuButton;
+import static helpers.ActionHelper.clickOnButton;
 
-    @FindBy(css="use[href='#icon-menu']")
-    WebElement mainFilterMenuButton;
-
-    @FindBy(css="input[name='search']")
-    WebElement inputSearchForm;
-
-    @FindBy(css="button.button_color_green")
-    WebElement findButton;
-
-    @FindBy(css="use[href='#icon-header-basket']")
-    WebElement shoppingCardButton;
-
-    public HeaderFragment(WebDriver webDriver) {
-        super(webDriver);
-    }
+public class HeaderFragment {
+    SelenideElement catalogMenuButton = $(byCssSelector("#fat-menu"));
+    SelenideElement mainFilterMenuButton = $(byCssSelector("use[href='#icon-menu']"));
+    SelenideElement inputSearchForm = $(byCssSelector("input[name='search']"));
+    SelenideElement findButton = $(byCssSelector("button.button_color_green"));
+    SelenideElement shoppingCardButton = $(byCssSelector("use[href='#icon-header-basket']"));
 
     public void clickOnCatalogMenuButton(){
-        clickOnElement(catalogMenuButton);
+        clickOnButton(catalogMenuButton);
     }
 }

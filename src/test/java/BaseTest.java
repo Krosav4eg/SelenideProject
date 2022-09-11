@@ -1,32 +1,28 @@
 import browserfactory.BrowserFactory;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
 import com.google.common.collect.ImmutableMap;
-import fragments.GoodItemFragment;
-import fragments.HeaderFragment;
-import fragments.MenuCategoriesFragment;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.aeonbits.owner.ConfigFactory;
-import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Listeners;
 import pages.MainPage;
 import pages.NoteBooksPage;
 import utils.PropsConfig;
 
-import java.util.concurrent.TimeUnit;
-
-import static browserfactory.BrowserFactory.getDriver;
+import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static com.codeborne.selenide.Selenide.open;
 import static com.github.automatedowl.tools.AllureEnvironmentWriter.allureEnvironmentWriter;
-import static driver.WebDriverWaits.waitForPageLoad;
-import static driver.WebdriverUtils.openUrl;
 
+@Log4j2
 @Listeners({AllureListener.class})
 public class BaseTest {
     public static final PropsConfig PROPS = ConfigFactory.create(PropsConfig.class);
-    MainPage mainPage;
-    NoteBooksPage noteBooksPage;
-    HeaderFragment headerFragment;
-    MenuCategoriesFragment menuCategoriesFragment;
-    GoodItemFragment goodItemFragment;
+    MainPage mainPage = new MainPage();
+    NoteBooksPage noteBooksPage = new NoteBooksPage();
 
     @BeforeSuite
     @Step("Set all detailed information about Environment")
@@ -40,31 +36,17 @@ public class BaseTest {
                         .build());
     }
 
-    @BeforeClass
-    public void setUp() {
-        WebDriverManager.chromedriver().cachePath("target");
-        WebDriverManager.chromedriver().avoidOutputTree().forceDownload().setup();
-    }
-
     @BeforeMethod(alwaysRun = true)
     public void mainSteps() {
-        BrowserFactory.getInstance().createDriverInstance(PROPS.BASE_BROWSER());
-        openUrl(PROPS.BASE_URL());
-        initPageElements();
-        waitForPageLoad();
-        getDriver().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-    }
-
-    private void initPageElements() {
-        mainPage = PageFactory.initElements(getDriver(), MainPage.class);
-        noteBooksPage = PageFactory.initElements(getDriver(), NoteBooksPage.class);
-        headerFragment = PageFactory.initElements(getDriver(), HeaderFragment.class);
-        menuCategoriesFragment = PageFactory.initElements(getDriver(), MenuCategoriesFragment.class);
-        goodItemFragment = PageFactory.initElements(getDriver(), GoodItemFragment.class);
+        WebDriverRunner.setWebDriver(BrowserFactory.getInstance().createDriverInstance(PROPS.BASE_BROWSER()));
+        Configuration.timeout = Integer.parseInt(PROPS.WAITING_TIMEOUT());
+        Configuration.baseUrl = "https://rozetka.com.ua/";
+        open(Configuration.baseUrl);
+        log.info("****** Browser has been started ******");
     }
 
     @AfterMethod(alwaysRun = true)
     public void closeBrowser() {
-        BrowserFactory.closeBrowser();
+        closeWebDriver();
     }
 }
