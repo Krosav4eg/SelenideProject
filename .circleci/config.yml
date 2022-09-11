@@ -83,7 +83,7 @@ jobs:
                 only_for_branches: master
                 webhook: $SLACK_WEBHOOK
 
-  # this one triggers on MASTER branch on 4 AM UTC every day
+  # this one triggers on MASTER branch on 5 AM UTC every day
   nightly_run:
     docker:
       - image: circleci/openjdk:8-jdk-browsers
@@ -143,6 +143,14 @@ jobs:
       - store_artifacts:
           path: target/site/allure-maven-plugin
           destination: Report/Allure
+      - when:
+          condition: << pipeline.parameters.notifyToSlack >>
+          steps:
+            - slack/status:
+                channel: C041TRUTE4V
+                fail_only: false
+                only_for_branches: master
+                webhook: $SLACK_WEBHOOK
 
 workflows:
   commit-workflow:
