@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  slack: circleci/slack@3.4.2
 
 parameters:
   suite:
@@ -7,9 +9,9 @@ parameters:
   NightlyRunNotify:
     type: boolean
     default: true
-  NotifyTrigger:
-      type: boolean
-      default: true
+  notifyToSlack:
+    type: boolean
+    default: true
 
 jobs:
   build:
@@ -72,6 +74,14 @@ jobs:
       - store_artifacts:
           path: target/site/allure-maven-plugin
           destination: Report/Allure
+      - when:
+          condition: << pipeline.parameters.notifyToSlack >>
+          steps:
+            - slack/status:
+                channel: C041TRUTE4V
+                fail_only: false
+                only_for_branches: master
+                webhook: $SLACK_WEBHOOK
 
   # this one triggers on MASTER branch on 4 AM UTC every day
   nightly_run:
