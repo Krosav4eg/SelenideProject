@@ -145,11 +145,7 @@ jobs:
           destination: Report/Allure
 
 workflows:
-
   commit-workflow:
-    when:
-      and:
-        - equal: [ true, << pipeline.parameters.NotifyTrigger >> ]
     jobs:
       - build:
           filters:
