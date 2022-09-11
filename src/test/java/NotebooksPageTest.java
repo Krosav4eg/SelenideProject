@@ -3,6 +3,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.RetryAnalyzer;
 
+import static data.CommonData.NOTE_BOOK_PAGE_TITLE;
+import static data.CommonData.SEARCH_WORLD;
 import static helpers.ActionHelper.getPageTitle;
 
 
@@ -14,10 +16,9 @@ public class NotebooksPageTest extends BaseTest {
     @Description("Verify title of application")
     @Test(retryAnalyzer = RetryAnalyzer.class)
     public void checkRedirectionToNotebooksPage() {
-        String expectedPageTitle = "Ноутбуки - ROZETKA | Купити ноутбук в Києві: ціна, відгуки, продаж, вибір ноутбуків в Україні";
         mainPage.clickOnCatalogMenu();
         mainPage.getMenuCategoriesFragment().clickOnNoteBooksCategories();
-        Assert.assertEquals(getPageTitle(), expectedPageTitle,
+        Assert.assertEquals(getPageTitle(), NOTE_BOOK_PAGE_TITLE.getData(),
                 "Current notebooks page url isn't equal expected: ");
 
     }
@@ -27,10 +28,9 @@ public class NotebooksPageTest extends BaseTest {
     @Description("Verify goods title")
     @Test(retryAnalyzer = RetryAnalyzer.class)
     public void checkNotebooksGoodsTitles() {
-        String searchWord = "Ноутбук";
         mainPage.clickOnCatalogMenu();
         mainPage.getMenuCategoriesFragment().clickOnNoteBooksCategories();
-        Assert.assertTrue(noteBooksPage.checkThatGoodsTileContainsSearchWord(searchWord),
+        Assert.assertTrue(noteBooksPage.checkThatGoodsTileContainsSearchWord(SEARCH_WORLD.getData()),
                 "Current notebooks goods title isn't equal expected:");
     }
 
