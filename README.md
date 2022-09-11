@@ -2,7 +2,7 @@ Test Automation framework for listings-ui-api-automation
 
 Local Setup:
 
-    1.Clone this repository with git clone https://github.com/KWRI/listings-ui-api-automation.git
+    1.Clone this repository with git clone https://github.com/Krosav4eg/SeleniumProject.git
     2.Make sure you have installed Maven & Allure on your PC
     3.This project uses Lombok for code generation during compilation. To make Lombok working:
         - Enable annotation processing in IDE settings;

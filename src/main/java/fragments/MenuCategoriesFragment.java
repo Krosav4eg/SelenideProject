@@ -1,26 +1,20 @@
 package fragments;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
-import static driver.WebElementInteractions.clickOnElement;
+import static com.codeborne.selenide.Selectors.byCssSelector;
+import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selenide.$;
+import static helpers.ActionHelper.clickOnButton;
 
-public class MenuCategoriesFragment extends BaseFragment {
+public class MenuCategoriesFragment  {
+    SelenideElement allMenuCategories = $(byCssSelector("ul.menu-categories.ng-star-inserted"));
+    SelenideElement noteBooksCategories = $(byXpath("(//a[contains(text(),'Ноутбуки')])[3]"));
 
-    @FindBy(css="ul.menu-categories.ng-star-inserted")
-    WebElement allMenuCategories;
-
-    @FindBy(xpath="(//a[contains(text(),'Ноутбуки')])[3]")
-    WebElement noteBooksCategories;
-
-    public MenuCategoriesFragment(WebDriver webDriver) {
-        super(webDriver);
-    }
 
     @Step("Click on notebooks categories")
     public void clickOnNoteBooksCategories(){
-        clickOnElement(noteBooksCategories);
+        clickOnButton(noteBooksCategories);
     }
 }

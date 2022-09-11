@@ -5,28 +5,18 @@ import fragments.HeaderFragment;
 import fragments.MenuCategoriesFragment;
 import lombok.Getter;
 import org.aeonbits.owner.ConfigFactory;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 import utils.PropsConfig;
 
-import static browserfactory.BrowserFactory.getDriver;
-
+/**
+ * AbstractPage class contains all common fragments in application
+ * and general methods related to navigation and checking page condition.
+ * This fragments can be using for interaction in different classes.
+ */
 @Getter
 public class AbstractPage {
     public static final PropsConfig PROPS = ConfigFactory.create(PropsConfig.class);
-    WebDriver webDriver;
 
-    public AbstractPage(WebDriver webDriver) {
-        this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);
-    }
-
-    protected HeaderFragment headerFragment =
-            PageFactory.initElements(getDriver(), HeaderFragment.class);
-
-    protected MenuCategoriesFragment menuCategoriesFragment=
-            PageFactory.initElements(getDriver(), MenuCategoriesFragment.class);
-
-    protected GoodItemFragment goodItemFragment=
-            PageFactory.initElements(getDriver(), GoodItemFragment.class);
+    protected HeaderFragment headerFragment = new HeaderFragment();
+    protected MenuCategoriesFragment menuCategoriesFragment= new MenuCategoriesFragment();
+    protected GoodItemFragment goodItemFragment= new GoodItemFragment();
 }
