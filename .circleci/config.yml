@@ -161,7 +161,7 @@ jobs:
             find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
           when: always
       - store_test_results:
-          path: ~/target/surefire-reports
+          path: ~/test-results
 
       - when:
           condition: << pipeline.parameters.notifyToSlack >>
