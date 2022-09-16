@@ -40,7 +40,7 @@ public class BaseTest {
     public void mainSteps() {
         WebDriverRunner.setWebDriver(BrowserFactory.getInstance().createDriverInstance(PROPS.BASE_BROWSER()));
         Configuration.timeout = Integer.parseInt(PROPS.WAITING_TIMEOUT());
-        Configuration.baseUrl = "https://rozetka.com.ua/";
+        Configuration.baseUrl = PROPS.BASE_URL();
         open(Configuration.baseUrl);
         log.info("****** Browser has been started ******");
     }
