@@ -99,7 +99,7 @@
                 <configuration>
                     <filesets>
                         <fileset>
-                            <directory>test-output</directory>
+                            <directory>surefire-reports</directory>
                             <includes>
                                 <include>**/*</include>
                             </includes>
