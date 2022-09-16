@@ -129,7 +129,7 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/suites/ui/SmokeSuite.xml</suiteXmlFile>
                     </suiteXmlFiles>
-                    <reportsDirectory>${basedir}/target/test-output</reportsDirectory>
+                    <reportsDirectory>${basedir}/target/surefire-reports</reportsDirectory>
                 </configuration>
             </plugin>
             <plugin>
