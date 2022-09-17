@@ -19,7 +19,7 @@ parameters:
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:8-jdk-browsers
+      - image: cimg/openjdk:8.0.322-browsers
 
     working_directory: ~/SeleniumProject
 
@@ -50,42 +50,24 @@ jobs:
           no_output_timeout: 40m
 
       - run:
-          name: Allure archive download
-          command: curl -L https://github.com/allure-framework/allure2/releases/download/2.13.1/allure-commandline-2.13.1.zip -o /tmp/allure.zip
-      - run:
-          name: Archive extraction
-          command: unzip /tmp/allure.zip
-      - run:
-          name: Allure installation
-          command: sudo mv allure-2.13.1 /usr/local/share/allure
-      - run:
-          name: Allure binary symlinking
-          command: sudo ln -s /usr/local/share/allure/bin/allure /usr/local/bin/allure
-      - run:
           name: Archive artifacts
           when: always
           command:
             tar -cvf artifacts-<< pipeline.parameters.suite >>.tar target/;
 
       - store_artifacts:
+          name: Upload archived artifacts
           path: artifacts-<< pipeline.parameters.suite >>.tar
 
       - run:
           name: Allure report generation (allure-results -> allure-report)
           command: mvn io.qameta.allure:allure-maven:report
           when: always
+
       - store_artifacts:
+          name: Upload Allure report
           path: target/site/allure-maven-plugin
           destination: Report/Allure
-
-      - run:
-          name: Save test results
-          command: |
-              mkdir -p ~/test-results/junit/
-              find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
-          when: always
-      - store_test_results:
-          path: ~/test-results
 
       - when:
           condition: << pipeline.parameters.notifyToSlack >>
@@ -183,8 +165,6 @@ workflows:
             branches:
               only:
                 - master
-                - update_circle_ci_config
-
 
   schedule-workflow:
     triggers:
@@ -194,7 +174,6 @@ workflows:
             branches:
               only:
                 - master
-                - update_circle_ci_config
     jobs:
       - nightly_run
 
