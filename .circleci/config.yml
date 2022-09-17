@@ -12,6 +12,9 @@ parameters:
   notifyToSlack:
     type: boolean
     default: true
+  ApiTrigger:
+    type: boolean
+    default: false
 
 jobs:
   build:
@@ -191,3 +194,11 @@ workflows:
                 - master
     jobs:
       - nightly_run
+
+  on_demand:
+    when: << pipeline.parameters.ApiTrigger >>
+    jobs:
+      - build:
+          context:
+            - nonprod_push_and_deploy
+            - qa_credentials
