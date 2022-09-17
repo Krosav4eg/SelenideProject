@@ -194,6 +194,7 @@ workflows:
             branches:
               only:
                 - master
+                - update_circle_ci_config
     jobs:
       - nightly_run
 
