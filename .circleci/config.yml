@@ -183,6 +183,8 @@ workflows:
             branches:
               only:
                 - master
+                - update_circle_ci_config
+
 
   schedule-workflow:
     triggers:
@@ -198,7 +200,4 @@ workflows:
   on_demand:
     when: << pipeline.parameters.ApiTrigger >>
     jobs:
-      - build:
-          context:
-            - nonprod_push_and_deploy
-            - qa_credentials
+      - build
