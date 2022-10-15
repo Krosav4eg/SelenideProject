@@ -1,0 +1,11 @@
+{
+  "firstname": "Sergey",
+  "lastname": "Potapov",
+  "totalprice": 123,
+  "depositpaid": true,
+  "bookingdates": {
+    "checkin": "2022-11-01",
+    "checkout": "2022-11-12"
+  },
+  "additionalneeds": "Breakfast"
+}

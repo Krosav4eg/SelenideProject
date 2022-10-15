@@ -5,7 +5,10 @@ orbs:
 parameters:
   suite:
     type: string
-    default: SmokeSuite
+    default: RegressionSuite
+  NightlyRunNotify:
+    type: boolean
+    default: true
   notifyToSlack:
     type: boolean
     default: true
