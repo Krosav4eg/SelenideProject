@@ -1,8 +1,11 @@
+package autotests.ui;
+
 import browserfactory.BrowserFactory;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.google.common.collect.ImmutableMap;
 import io.qameta.allure.Step;
+import listeners.AllureListener;
 import lombok.extern.log4j.Log4j2;
 import org.aeonbits.owner.ConfigFactory;
 import org.testng.annotations.AfterMethod;
@@ -30,9 +33,11 @@ public class BaseTest {
         allureEnvironmentWriter(
                 ImmutableMap.<String, String>builder()
                         .put("Browser", "Chrome")
-                        .put("Browser.Version", "104.0.5112.102 (Official Build) (64-bit)")
+                        .put("Browser.Version", "Версия 106.0.5249.119 (Официальная сборка), (64 бит)")
                         .put("OS", "Windows 10")
-                        .put("URL", "https://rozetka.com.ua/")
+                        .put("URL_UI", "https://rozetka.com.ua/")
+                        .put("URL_API", "https://restful-booker.herokuapp.com/")
+
                         .build());
     }
 

@@ -1,17 +1,16 @@
+package listeners;
+
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Attachment;
 import lombok.SneakyThrows;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
-
-import static browserfactory.BrowserFactory.getDriver;
 
 
 public class AllureListener implements ITestListener {

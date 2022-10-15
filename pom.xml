@@ -12,6 +12,12 @@
         <aspectj.version>1.9.2</aspectj.version>
         <selenide.version>5.25.0</selenide.version>
         <allure.version>2.13.1</allure.version>
+        <allure.rest.assured>2.13.1</allure.rest.assured>
+        <json.schema.validator>2.9.0</json.schema.validator>
+        <io.rest-assured>4.2.0</io.rest-assured>
+        <google.code.gson>2.8.5</google.code.gson>
+        <json.schema.validato>2.9.0</json.schema.validato>
+        <json-path>2.5.0</json-path>
     </properties>
 
     <dependencies>
@@ -77,6 +83,36 @@
             <groupId>com.github.automatedowl</groupId>
             <artifactId>allure-environment-writer</artifactId>
             <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-rest-assured</artifactId>
+            <version>${allure.rest.assured}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jayway.restassured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>${json.schema.validator}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${io.rest-assured}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${google.code.gson}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jayway.restassured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>${json.schema.validato}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+            <version>${json-path}</version>
         </dependency>
     </dependencies>
     <build>

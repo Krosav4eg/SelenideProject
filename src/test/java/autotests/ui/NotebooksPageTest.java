@@ -1,3 +1,5 @@
+package autotests.ui;
+
 import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;

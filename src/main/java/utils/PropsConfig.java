@@ -16,6 +16,15 @@ public interface PropsConfig extends Config {
 	@Config.Key("base.url")
 	String BASE_URL();
 
+	@Config.Key("base.api.url")
+	String BASE_API_URL();
+
 	@Config.Key("waiting.timeout")
 	String WAITING_TIMEOUT();
+
+	@Config.Key("login")
+	String LOGIN();
+
+	@Config.Key("password")
+	String PASSWORD();
 }
