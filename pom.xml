@@ -151,7 +151,7 @@
                         -Xmx1024m
                     </argLine>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/suites/ui/SmokeSuite.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/suites/ui/RegressionSuite.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <reportsDirectory>${basedir}/target/test-output</reportsDirectory>
                 </configuration>
