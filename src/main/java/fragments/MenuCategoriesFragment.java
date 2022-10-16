@@ -10,13 +10,13 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static helpers.ActionHelper.clickOnButton;
 
-public class MenuCategoriesFragment  {
+public class MenuCategoriesFragment {
     SelenideElement allMenuCategories = $(byCssSelector("ul.menu-categories.ng-star-inserted"));
     ElementsCollection noteBooksCategories = $$(byXpath("//a[contains(text(),'Ноутбуки')]"));
 
 
     @Step("Click on notebooks categories")
-    public void clickOnNoteBooksCategories(){
+    public void clickOnNoteBooksCategories() {
         clickOnButton(noteBooksCategories.get(2));
     }
 }

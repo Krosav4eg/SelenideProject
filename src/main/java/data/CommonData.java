@@ -11,7 +11,7 @@ public enum CommonData {
         this.data = data;
     }
 
-   public String getData() {
+    public String getData() {
         return data;
     }
 }

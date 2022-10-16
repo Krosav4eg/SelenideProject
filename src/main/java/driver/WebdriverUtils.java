@@ -11,23 +11,23 @@ import static browserfactory.BrowserFactory.getDriver;
 public class WebdriverUtils {
 
     @Step("Open base URL {url}")
-    public static void openUrl(String url){
+    public static void openUrl(String url) {
         getDriver().navigate().to(url);
     }
 
-    public static String getCurrentUrl(){
-      return getDriver().getCurrentUrl();
+    public static String getCurrentUrl() {
+        return getDriver().getCurrentUrl();
     }
 
-    public static void navigatePreviousPage(){
+    public static void navigatePreviousPage() {
         getDriver().navigate().back();
     }
 
-    public static void navigateNextPage(){
+    public static void navigateNextPage() {
         getDriver().navigate().forward();
     }
 
-    public static void navigateRefreshPage(){
+    public static void navigateRefreshPage() {
         getDriver().navigate().refresh();
     }
 

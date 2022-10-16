@@ -1,6 +1,6 @@
 package autotests.api;
 
-import api.BookingSteps;
+import api.steps.BookingSteps;
 import io.qameta.allure.*;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
@@ -8,14 +8,13 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static api.BaseStep.getResponseSpec;
+import static api.service.BaseRestService.getResponseSpec;
 import static com.jayway.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 
 @Feature("Booking")
 public class BookingTest extends BaseTest {
-    protected static final String PATH_TO_CREATION_BOOKING_RESPONSE_SCHEMA = "json/schemas/CreateBookingSchema.json";
-    protected static final String PATH_TO_GENERAL_BOOKING_INFO_SCHEMA = "json/schemas/BookingInfoSchema.json";
+
     private static String bookingId;
 
     @BeforeClass

@@ -1,4 +1,4 @@
-package api;
+package api.endpoints;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

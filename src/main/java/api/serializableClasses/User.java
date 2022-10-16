@@ -11,8 +11,4 @@ public class User {
         this.username = username;
         this.password = password;
     }
-
-    public static synchronized User getUserAuth(String username, String password) {
-        return new User(username, password);
-    }
 }

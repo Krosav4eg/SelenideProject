@@ -1,37 +1,20 @@
-package api;
+package api.steps;
 
-import api.pojo.BookingCreation;
-import api.pojo.BookingDates;
+import api.endpoints.UrlEndPoints;
+import api.service.BookingRestService;
 import com.google.gson.JsonObject;
 import io.restassured.response.Response;
 
+import static api.dto.BookingGenerator.getBookingDto;
 import static api.service.BookingService.generatePriceForJson;
 import static io.restassured.RestAssured.given;
 
-public class BookingSteps extends BaseStep {
+public class BookingSteps extends BookingRestService {
 
     public static final String PATH_TO_NEW_BOOKING_FILE = "CreateBooking.json";
 
-    public static BookingCreation getBookingDto() {
-        return BookingCreation.builder()
-                .firstname("Sergey")
-                .lastname("Potapov")
-                .totalprice(123)
-                .depositpaid(true)
-                .bookingdates(getBookingDatesDto())
-                .additionalneeds("Breakfast")
-                .build();
-    }
-
-    public static BookingDates getBookingDatesDto() {
-        return BookingDates.builder()
-                .checkin("2022-11-01")
-                .checkout("2022-11-12")
-                .build();
-    }
-
     /**
-      В этом методе тело передаётся как DTO
+     * В этом методе тело передаётся как DTO
      */
     public static Response createNewBooking() {
         return given()
@@ -45,20 +28,20 @@ public class BookingSteps extends BaseStep {
     }
 
     /**
-      В этом методе тело передаётся как Json Object (используется библиотека JSON)
+     * В этом методе тело передаётся как Json Object (используется библиотека JSON)
      */
     public static Response createNewBookingUsingJsonObject() {
         JsonObject jsonObject2 = new JsonObject();
-        jsonObject2.addProperty("checkin","2022-11-01");
-        jsonObject2.addProperty("checkout","2022-11-12");
+        jsonObject2.addProperty("checkin", "2022-11-01");
+        jsonObject2.addProperty("checkout", "2022-11-12");
 
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("firstname","Sergey");
-        jsonObject.addProperty("lastname","Potapov");
-        jsonObject.addProperty("totalprice",123);
-        jsonObject.addProperty("depositpaid",true);
+        jsonObject.addProperty("firstname", "Sergey");
+        jsonObject.addProperty("lastname", "Potapov");
+        jsonObject.addProperty("totalprice", 123);
+        jsonObject.addProperty("depositpaid", true);
         jsonObject.add("bookingdates", jsonObject2);
-        jsonObject.addProperty("additionalneeds","Breakfast");
+        jsonObject.addProperty("additionalneeds", "Breakfast");
 
         return given()
                 .spec(getRequestSpecification())
@@ -71,7 +54,7 @@ public class BookingSteps extends BaseStep {
     }
 
     /**
-      Тело запроса меняется путём модификации самого JSON файла
+     * Тело запроса меняется путём модификации самого JSON файла
      */
     public static Response createNewBookingWithChangedPrice() {
         return given()
@@ -85,15 +68,13 @@ public class BookingSteps extends BaseStep {
     }
 
     /**
-      В этом методе тело передаётся как строка+ в Request spec добавляется составной хэдер
+     * В этом методе тело передаётся как строка+ в Request spec добавляется составной хэдер
      */
     public static Response updateBooking(String bookingId) {
         String body = "{\"firstname\":\"Jim\",\"lastname\":\"Brown\",\"totalprice\":175,\"depositpaid\":true,\"bookingdates\":{\"checkin\":\"2022-11-11\",\"checkout\":\"2022-11-12\"},\"additionalneeds\":\"Diner\"}";
 
         return given()
-                .spec(getRequestSpecification()
-                        .accept("application/json")
-                        .and().header("Cookie", "token=" + makeAuthorizationAndGetToken()))
+                .spec(getRequestSpecificationForBookingUpdate())
                 .when()
                 .and()
                 .body(body)
