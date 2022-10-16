@@ -15,7 +15,7 @@ public class HeaderFragment {
     SelenideElement findButton = $(byCssSelector("button.button_color_green"));
     SelenideElement shoppingCardButton = $(byCssSelector("use[href='#icon-header-basket']"));
 
-    public void clickOnCatalogMenuButton(){
+    public void clickOnCatalogMenuButton() {
         clickOnButton(catalogMenuButton);
     }
 }

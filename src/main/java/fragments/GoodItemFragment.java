@@ -19,7 +19,7 @@ public class GoodItemFragment {
     }
 
     public void checkSizeAllGoodsBodyItems(int elementsSize) {
-         checkThatElementCollectionsHasSize(goodsBodyItem,elementsSize);
+        checkThatElementCollectionsHasSize(goodsBodyItem, elementsSize);
     }
 
 }

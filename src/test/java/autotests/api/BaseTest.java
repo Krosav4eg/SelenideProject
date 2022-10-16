@@ -8,6 +8,9 @@ import org.testng.annotations.BeforeTest;
 @Log4j2
 public class BaseTest {
 
+    protected static final String PATH_TO_CREATION_BOOKING_RESPONSE_SCHEMA = "json/schemas/CreateBookingSchema.json";
+    protected static final String PATH_TO_GENERAL_BOOKING_INFO_SCHEMA = "json/schemas/BookingInfoSchema.json";
+
     @BeforeTest(alwaysRun = true)
     public void setFilter() {
         RestAssured.filters(new AllureRestAssured());

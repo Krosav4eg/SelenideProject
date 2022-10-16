@@ -17,6 +17,6 @@ public class AbstractPage {
     public static final PropsConfig PROPS = ConfigFactory.create(PropsConfig.class);
 
     protected HeaderFragment headerFragment = new HeaderFragment();
-    protected MenuCategoriesFragment menuCategoriesFragment= new MenuCategoriesFragment();
-    protected GoodItemFragment goodItemFragment= new GoodItemFragment();
+    protected MenuCategoriesFragment menuCategoriesFragment = new MenuCategoriesFragment();
+    protected GoodItemFragment goodItemFragment = new GoodItemFragment();
 }
