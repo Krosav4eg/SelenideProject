@@ -5,9 +5,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.RetryAnalyzer;
 
-import static data.CommonData.NOTE_BOOK_PAGE_TITLE;
+import static data.CommonData.NOTE_BOOK_BRAND;
 import static data.CommonData.SEARCH_WORLD;
-import static helpers.ActionHelper.getPageTitle;
 
 
 @Feature("Notebooks Test")
@@ -15,13 +14,13 @@ public class NotebooksPageTest extends BaseTest {
 
     @Severity(SeverityLevel.MINOR)
     @TmsLink("1")
-    @Description("Verify title of application")
+    @Description("Verify name of selected product form filter bar")
     @Test(retryAnalyzer = RetryAnalyzer.class)
-    public void checkRedirectionToNotebooksPage() {
-        mainPage.clickOnCatalogMenu();
-        mainPage.getMenuCategoriesFragment().clickOnNoteBooksCategories();
-        Assert.assertEquals(getPageTitle(), NOTE_BOOK_PAGE_TITLE.getData(),
-                "Current notebooks page url isn't equal expected: ");
+    public void checkNameOfSelectedProductFormFilterBar() {
+        navigateToNotebooksCategory();
+        mainPage.getFilterSideFragment().selectBrandFromSideBar(NOTE_BOOK_BRAND.getData());
+        Assert.assertTrue(noteBooksPage.checkThatGoodsTileContainsSearchWord("ASUS"),
+                "Current notebooks brand title isn't equal expected:");
 
     }
 
@@ -30,8 +29,7 @@ public class NotebooksPageTest extends BaseTest {
     @Description("Verify goods title")
     @Test(retryAnalyzer = RetryAnalyzer.class)
     public void checkNotebooksGoodsTitles() {
-        mainPage.clickOnCatalogMenu();
-        mainPage.getMenuCategoriesFragment().clickOnNoteBooksCategories();
+        navigateToNotebooksCategory();
         Assert.assertTrue(noteBooksPage.checkThatGoodsTileContainsSearchWord(SEARCH_WORLD.getData()),
                 "Current notebooks goods title isn't equal expected:");
     }
@@ -42,8 +40,11 @@ public class NotebooksPageTest extends BaseTest {
     @Test(retryAnalyzer = RetryAnalyzer.class)
     public void checkGoodsItemsSize() {
         int expectedSize = 60;
-        mainPage.clickOnCatalogMenu();
-        mainPage.getMenuCategoriesFragment().clickOnNoteBooksCategories();
+        navigateToNotebooksCategory();
         noteBooksPage.checkThatGoodsItemsHaveSize(expectedSize);
+    }
+
+    private void navigateToNotebooksCategory() {
+        mainPage.clickOnCatalogMenu().getMenuCategoriesFragment().clickOnNoteBooksCategories();
     }
 }

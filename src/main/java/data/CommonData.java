@@ -1,17 +1,14 @@
 package data;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public enum CommonData {
 
-    NOTE_BOOK_PAGE_TITLE("Ноутбуки - ROZETKA | Купити ноутбук в Києві: ціна, відгуки, продаж, вибір ноутбуків в Україні"),
-    SEARCH_WORLD("Ноутбук");
+    NOTE_BOOK_BRAND("ASUS"),
+    SEARCH_WORLD("НОУТБУК");
 
     private final String data;
-
-    CommonData(String data) {
-        this.data = data;
-    }
-
-    public String getData() {
-        return data;
-    }
 }

@@ -33,6 +33,10 @@ public class ActionHelper {
         return element.shouldBe(Condition.exist).isEnabled();
     }
 
+    public static boolean isElementSelected(SelenideElement element) {
+        return element.shouldBe(Condition.exist).isSelected();
+    }
+
     public static boolean isElementInactive(SelenideElement element) {
         return !element.shouldBe(Condition.exist).isEnabled();
     }
@@ -59,7 +63,7 @@ public class ActionHelper {
     }
 
     public static boolean checkThatAllElementsContainsText(ElementsCollection selenideElements, String searchWord) {
-        return selenideElements.stream().map(WebElement::getText).allMatch(e -> e.contains(searchWord));
+        return selenideElements.stream().map(WebElement::getText).map(String::toUpperCase).allMatch(e -> e.contains(searchWord));
     }
 
     public static void selectOptionByText(ElementsCollection selenideElements, String text) {

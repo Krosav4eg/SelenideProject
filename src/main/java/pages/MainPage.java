@@ -5,7 +5,8 @@ import io.qameta.allure.Step;
 public class MainPage extends AbstractPage {
 
     @Step("Click on catalog menu")
-    public void clickOnCatalogMenu() {
+    public MainPage clickOnCatalogMenu() {
         getHeaderFragment().clickOnCatalogMenuButton();
+        return new MainPage();
     }
 }
