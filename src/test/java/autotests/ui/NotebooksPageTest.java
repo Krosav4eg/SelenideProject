@@ -48,4 +48,5 @@ public class NotebooksPageTest extends BaseTest {
 //        mainPage.clickOnCatalogMenu().getMenuCategoriesFragment().clickOnNoteBooksCategories();
 //
 //    }
+
 }
