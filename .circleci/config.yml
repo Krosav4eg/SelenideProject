@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   slack: circleci/slack@3.4.2
+  browser-tools: circleci/browser-tools@1.4.0
 
 parameters:
   suite:
@@ -24,7 +25,7 @@ jobs:
         default: false
 
     docker:
-      - image: circleci/openjdk:8-jdk-browsers
+      - image: cimg/openjdk:8.0.322-browsers
 
     working_directory: ~/SeleniumProject
 
@@ -33,6 +34,7 @@ jobs:
 
     steps:
       - checkout
+      - browser-tools/install-chrome
 
       - restore_cache:
           keys:
