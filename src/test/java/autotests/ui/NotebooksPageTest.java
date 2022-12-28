@@ -17,7 +17,6 @@ public class NotebooksPageTest extends BaseTest {
     @Description("Verify name of selected product form filter bar")
     @Test(retryAnalyzer = RetryAnalyzer.class)
     public void checkNameOfSelectedProductFormFilterBar() {
-        navigateToNotebooksCategory();
         mainPage.getFilterSideFragment().selectBrandFromSideBar(NOTE_BOOK_BRAND.getData());
         Assert.assertTrue(noteBooksPage.checkThatGoodsTileContainsSearchWord("ASUS"),
                 "Current notebooks brand title isn't equal expected:");
@@ -29,7 +28,6 @@ public class NotebooksPageTest extends BaseTest {
     @Description("Verify goods title")
     @Test(retryAnalyzer = RetryAnalyzer.class)
     public void checkNotebooksGoodsTitles() {
-        navigateToNotebooksCategory();
         Assert.assertTrue(noteBooksPage.checkThatGoodsTileContainsSearchWord(SEARCH_WORLD.getData()),
                 "Current notebooks goods title isn't equal expected:");
     }
@@ -40,13 +38,6 @@ public class NotebooksPageTest extends BaseTest {
     @Test(retryAnalyzer = RetryAnalyzer.class)
     public void checkGoodsItemsSize() {
         int expectedSize = 60;
-        navigateToNotebooksCategory();
         noteBooksPage.checkThatGoodsItemsHaveSize(expectedSize);
     }
-
-    private void navigateToNotebooksCategory() {
-        mainPage.clickOnCatalogMenu().getMenuCategoriesFragment().clickOnNoteBooksCategories();
-
-    }
-
 }
