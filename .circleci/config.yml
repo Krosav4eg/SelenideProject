@@ -24,7 +24,7 @@ jobs:
         default: false
 
     docker:
-      - image: cimg/openjdk:8.0.322-browsers
+      - image: circleci/openjdk:8-jdk-browsers
 
     working_directory: ~/SeleniumProject
 
