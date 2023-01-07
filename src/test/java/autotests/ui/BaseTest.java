@@ -2,6 +2,7 @@ package autotests.ui;
 
 import browserfactory.BrowserFactory;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import com.google.common.collect.ImmutableMap;
 import io.qameta.allure.Step;
@@ -16,8 +17,8 @@ import pages.MainPage;
 import pages.NoteBooksPage;
 import utils.PropsConfig;
 
-import static com.codeborne.selenide.Selenide.closeWebDriver;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selenide.*;
 import static com.github.automatedowl.tools.AllureEnvironmentWriter.allureEnvironmentWriter;
 
 @Log4j2
@@ -47,6 +48,8 @@ public class BaseTest {
         Configuration.timeout = Integer.parseInt(PROPS.WAITING_TIMEOUT());
         Configuration.baseUrl = PROPS.BASE_URL();
         open(Configuration.baseUrl);
+        SelenideElement acceptButton = $(byXpath("//button[contains(text(),'Vefiry you are human')]"));
+        acceptButton.click();
         log.info("****** Browser has been started ******");
     }
 
