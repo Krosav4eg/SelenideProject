@@ -9,6 +9,8 @@ public class DriverCapabilities {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         options.addArguments("--disable-notifications");
+        options.addArguments("disable-infobars");
+        options.addArguments("--disable-extensions");
         return options;
     }
 }
