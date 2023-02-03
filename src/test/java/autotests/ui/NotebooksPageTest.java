@@ -38,11 +38,6 @@ public class NotebooksPageTest extends BaseTest {
     @Test()
     public void checkGoodsItemsSize() {
         int expectedSize = 60;
-        navigateToNotebooksCategory();
         noteBooksPage.checkThatGoodsItemsHaveSize(expectedSize);
-    }
-
-    private void navigateToNotebooksCategory() {
-        mainPage.clickOnCatalogMenu().getMenuCategoriesFragment().clickOnNoteBooksCategories();
     }
 }
