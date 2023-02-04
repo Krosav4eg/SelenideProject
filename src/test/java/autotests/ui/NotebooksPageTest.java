@@ -25,7 +25,7 @@ public class NotebooksPageTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("2")
     @Description("Verify that product price matches {minPrice} and {maxPrice} range")
-    @Test()
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void checkProductPriceRangeSelectedFormFilterBar() {
         String minPrice = "30000";
         String maxPrice = "35000";
