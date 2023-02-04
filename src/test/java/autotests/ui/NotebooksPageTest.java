@@ -12,7 +12,7 @@ import static data.CommonData.SEARCH_WORLD;
 @Feature("Notebooks Test")
 public class NotebooksPageTest extends BaseTest {
 
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.CRITICAL)
     @TmsLink("1")
     @Description("Verify name of selected product form filter bar")
     @Test(retryAnalyzer = RetryAnalyzer.class)
@@ -22,7 +22,7 @@ public class NotebooksPageTest extends BaseTest {
                 "Current notebooks brand title isn't equal expected:");
     }
 
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.CRITICAL)
     @TmsLink("2")
     @Description("Verify that product price matches {minPrice} and {maxPrice} range")
     @Test()
@@ -35,7 +35,7 @@ public class NotebooksPageTest extends BaseTest {
 
     }
 
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.CRITICAL)
     @TmsLink("3")
     @Description("Verify goods title")
     @Test(retryAnalyzer = RetryAnalyzer.class)
@@ -44,7 +44,7 @@ public class NotebooksPageTest extends BaseTest {
                 "Current notebooks goods title isn't equal expected:");
     }
 
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.CRITICAL)
     @TmsLink("4")
     @Description("Verify goods size")
     @Test()

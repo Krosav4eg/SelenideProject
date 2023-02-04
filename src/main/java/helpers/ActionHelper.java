@@ -68,8 +68,9 @@ public class ActionHelper {
     }
 
     public static boolean checkThatAllElementsContainsNumberValue(ElementsCollection selenideElements, int minPrice, int maxPrice) {
-        return selenideElements.stream().map(WebElement::getText).map(e -> e.replaceAll("[ ₴]", ""))
-                .mapToInt(Integer::parseInt).allMatch(number -> number >= minPrice && number <= maxPrice);
+        return selenideElements.stream().map(WebElement::getText).map(e -> e.replaceAll(" ", ""))
+                .map(e -> e.replaceAll("₴", "")).mapToInt(Integer::parseInt)
+                .allMatch(number -> number >= minPrice && number <= maxPrice);
     }
 
     public static void selectOptionByText(ElementsCollection selenideElements, String text) {
