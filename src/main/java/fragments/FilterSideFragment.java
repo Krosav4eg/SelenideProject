@@ -8,20 +8,20 @@ import static com.codeborne.selenide.Selenide.$;
 import static helpers.ActionHelper.*;
 
 public class FilterSideFragment {
-    SelenideElement filterBarBody = $(byCssSelector(".side-filter__body.ng-star-inserted"));
+    SelenideElement sellerFilterBarBody = $(byCssSelector("div[data-filter-name='seller']"));
     String sidebarBrand = "//ul[@class='checkbox-filter']//a[contains(@data-id, '%s')]";
     SelenideElement minPriceInput = $(byCssSelector("input[formcontrolname='min']"));
     SelenideElement maxPriceInput = $(byCssSelector("input[formcontrolname='max']"));
 
     public FilterSideFragment selectBrandFromSideBar(String brandName) {
-        isElementDisplayed(filterBarBody);
+        isElementDisplayed(sellerFilterBarBody);
         setRequiredTextIntoXpath(sidebarBrand, brandName).click();
         isElementSelected(setRequiredTextIntoXpath(sidebarBrand, brandName));
         return new FilterSideFragment();
     }
 
     public FilterSideFragment fillInMinAndMaxPrice(String minPrice, String maxPrice) {
-        isElementDisplayed(filterBarBody);
+        isElementDisplayed(sellerFilterBarBody);
         scrollIntoElement(minPriceInput);
         timeOutDelay();
         setTextInField(minPriceInput,minPrice);

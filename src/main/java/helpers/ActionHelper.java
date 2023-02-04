@@ -21,8 +21,8 @@ public class ActionHelper {
         element.shouldBe(Condition.exist).shouldBe(Condition.visible).shouldBe(enabled).click();
     }
 
-    public static boolean isElementDisplayed(SelenideElement element) {
-        return element.is(Condition.visible);
+    public static void isElementDisplayed(SelenideElement element) {
+         element.shouldBe(Condition.visible);
     }
 
     public static boolean isElementNotDisplayed(SelenideElement element) {
