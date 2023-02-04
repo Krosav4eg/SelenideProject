@@ -29,7 +29,6 @@ public class AllureListener implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
         setTestStatus(iTestResult);
-
     }
 
     @Override

@@ -42,6 +42,7 @@ public class ActionHelper {
     }
 
     public static void setTextInField(SelenideElement element, String value) {
+        element.shouldBe(Condition.exist).clear();
         element.shouldBe(Condition.exist).setValue(value);
     }
 
@@ -64,6 +65,11 @@ public class ActionHelper {
 
     public static boolean checkThatAllElementsContainsText(ElementsCollection selenideElements, String searchWord) {
         return selenideElements.stream().map(WebElement::getText).map(String::toUpperCase).allMatch(e -> e.contains(searchWord));
+    }
+
+    public static boolean checkThatAllElementsContainsNumberValue(ElementsCollection selenideElements, int minPrice, int maxPrice) {
+        return selenideElements.stream().map(WebElement::getText).map(e -> e.replaceAll("[ ₴]", ""))
+                .mapToInt(Integer::parseInt).allMatch(number -> number >= minPrice && number <= maxPrice);
     }
 
     public static void selectOptionByText(ElementsCollection selenideElements, String text) {

@@ -20,11 +20,23 @@ public class NotebooksPageTest extends BaseTest {
         mainPage.getFilterSideFragment().selectBrandFromSideBar(NOTE_BOOK_BRAND.getData());
         Assert.assertTrue(noteBooksPage.checkThatGoodsTileContainsSearchWord("ASUS"),
                 "Current notebooks brand title isn't equal expected:");
-
     }
 
     @Severity(SeverityLevel.MINOR)
     @TmsLink("2")
+    @Description("Verify that product price matches {minPrice} and {maxPrice} range")
+    @Test()
+    public void checkProductPriceRangeSelectedFormFilterBar() {
+        String minPrice = "30000";
+        String maxPrice = "35000";
+        mainPage.getFilterSideFragment().fillInMinAndMaxPrice(minPrice, maxPrice);
+        Assert.assertTrue(noteBooksPage.checkThatGoodsItemsPriceRangeIsCorrect(Integer.parseInt(minPrice),
+                Integer.parseInt(maxPrice)), "Current notebooks price isn't in expected range");
+
+    }
+
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("3")
     @Description("Verify goods title")
     @Test(retryAnalyzer = RetryAnalyzer.class)
     public void checkNotebooksGoodsTitles() {
@@ -33,7 +45,7 @@ public class NotebooksPageTest extends BaseTest {
     }
 
     @Severity(SeverityLevel.MINOR)
-    @TmsLink("3")
+    @TmsLink("4")
     @Description("Verify goods size")
     @Test()
     public void checkGoodsItemsSize() {
