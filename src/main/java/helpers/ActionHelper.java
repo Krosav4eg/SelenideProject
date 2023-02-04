@@ -92,13 +92,12 @@ public class ActionHelper {
         return element.getValue();
     }
 
-    public static String getPageTitle() {
+    public static void timeOutDelay() {
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return WebDriverRunner.getWebDriver().getTitle();
     }
 
     public static SelenideElement setRequiredTextIntoXpath(String element, String inputText) {

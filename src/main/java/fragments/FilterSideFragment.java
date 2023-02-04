@@ -23,6 +23,7 @@ public class FilterSideFragment {
     public FilterSideFragment fillInMinAndMaxPrice(String minPrice, String maxPrice) {
         isElementDisplayed(filterBarBody);
         scrollIntoElement(minPriceInput);
+        timeOutDelay();
         setTextInField(minPriceInput,minPrice);
         setTextInField(maxPriceInput,maxPrice);
         maxPriceInput.sendKeys((Keys.ENTER));
