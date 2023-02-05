@@ -21,8 +21,8 @@ public class ActionHelper {
         element.shouldBe(Condition.exist).shouldBe(Condition.visible).shouldBe(enabled).click();
     }
 
-    public static boolean isElementDisplayed(SelenideElement element) {
-        return element.is(Condition.visible);
+    public static void isElementDisplayed(SelenideElement element) {
+         element.shouldBe(Condition.visible);
     }
 
     public static boolean isElementNotDisplayed(SelenideElement element) {
@@ -42,6 +42,7 @@ public class ActionHelper {
     }
 
     public static void setTextInField(SelenideElement element, String value) {
+        element.shouldBe(Condition.exist).clear();
         element.shouldBe(Condition.exist).setValue(value);
     }
 
@@ -66,6 +67,12 @@ public class ActionHelper {
         return selenideElements.stream().map(WebElement::getText).map(String::toUpperCase).allMatch(e -> e.contains(searchWord));
     }
 
+    public static boolean checkThatAllElementsContainsNumberValue(ElementsCollection selenideElements, int minPrice, int maxPrice) {
+        return selenideElements.stream().map(WebElement::getText).map(e -> e.replaceAll(" ", ""))
+                .map(e -> e.replaceAll("₴", "")).mapToInt(Integer::parseInt)
+                .allMatch(number -> number >= minPrice && number <= maxPrice);
+    }
+
     public static void selectOptionByText(ElementsCollection selenideElements, String text) {
         selenideElements.should(CollectionCondition.sizeGreaterThan(0));
         selenideElements.stream().filter(element -> element.getText().trim().equals(text.trim())).findFirst()
@@ -85,13 +92,12 @@ public class ActionHelper {
         return element.getValue();
     }
 
-    public static String getPageTitle() {
+    public static void timeOutDelay() {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return WebDriverRunner.getWebDriver().getTitle();
     }
 
     public static SelenideElement setRequiredTextIntoXpath(String element, String inputText) {
