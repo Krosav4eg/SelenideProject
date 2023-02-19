@@ -1,5 +1,7 @@
 Test Automation framework for listings-ui-api-automation
 
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Krosav4eg/SeleniumProject/tree/master.svg?/testspace/pass-ratio/:org/:project/:space+)](https://dl.circleci.com/status-badge/redirect/gh/Krosav4eg/SeleniumProject/tree/master)
+
 Local Setup:
 
     1.Clone this repository with git clone https://github.com/Krosav4eg/SeleniumProject.git
