@@ -32,12 +32,11 @@ public class BaseTest {
     void setAllureEnvironment() {
         allureEnvironmentWriter(
                 ImmutableMap.<String, String>builder()
-                        .put("Browser", "Chrome")
-                        .put("Browser.Version", "106.0.5249.119, (64 bit)")
+                        .put("Browser", "Firefox")
+                        .put("Browser.Version", "111.0, (64 bit)")
                         .put("OS", "Windows 10")
                         .put("URL_UI", "https://rozetka.com.ua/")
                         .put("URL_API", "https://restful-booker.herokuapp.com/")
-
                         .build());
     }
 
