@@ -7,7 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static browserfactory.BrowserTypes.CHROME;
 import static browserfactory.BrowserTypes.FIREFOX;
-import static driver.DriverCapabilities.chromeOptions;
+import static driver.DriverCapabilities.*;
 
 
 public class BrowserFactory {
@@ -38,10 +38,10 @@ public class BrowserFactory {
         if (browserName != null) {
             if (CHROME.getBrowser().equalsIgnoreCase(browserName)) {
                 WebDriverManager.chromedriver().setup();
-                driverThread.set(new ChromeDriver(chromeOptions()));
+                driverThread.set(new ChromeDriver(getChromeOptions()));
             } else if (FIREFOX.getBrowser().equalsIgnoreCase(browserName)) {
                 WebDriverManager.firefoxdriver().setup();
-                driverThread.set(new FirefoxDriver());
+                driverThread.set(new FirefoxDriver(getFireFoxOptions()));
             }
         }
         return getDriver();
