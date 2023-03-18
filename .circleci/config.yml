@@ -108,5 +108,3 @@ workflows:
 
   on_demand:
     when: << pipeline.parameters.ApiTrigger >>
-    jobs:
-      - build
