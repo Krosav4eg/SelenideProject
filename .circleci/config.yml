@@ -105,3 +105,8 @@ workflows:
     jobs:
       - build:
           NightlyRunNotify: true
+
+  on_demand:
+    when: << pipeline.parameters.ApiTrigger >>
+    jobs:
+      - build
