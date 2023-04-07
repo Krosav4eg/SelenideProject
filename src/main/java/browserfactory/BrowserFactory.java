@@ -13,6 +13,8 @@ import static driver.DriverCapabilities.*;
 public class BrowserFactory {
 
     private static final ThreadLocal<WebDriver> driverThread = new ThreadLocal<WebDriver>();
+    public static final String DRIVER_NAME_FIREFOX = "webdriver.gecko.driver";
+    public static final String FIREFOX_DRIVER_PATH = System.getProperty("user.dir") + "/src/main/resources/drivers/geckodriver.exe";
 
     private static volatile BrowserFactory instance;
 
@@ -40,7 +42,7 @@ public class BrowserFactory {
                 WebDriverManager.chromedriver().setup();
                 driverThread.set(new ChromeDriver(getChromeOptions()));
             } else if (FIREFOX.getBrowser().equalsIgnoreCase(browserName)) {
-                WebDriverManager.firefoxdriver().setup();
+                System.setProperty(DRIVER_NAME_FIREFOX, FIREFOX_DRIVER_PATH);
                 driverThread.set(new FirefoxDriver(getFireFoxOptions()));
             }
         }
