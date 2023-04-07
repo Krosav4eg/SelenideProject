@@ -87,6 +87,9 @@ jobs:
 workflows:
 
   commit-workflow:
+    when:
+      and:
+        - equal: [ false, << pipeline.parameters.ApiTrigger >>]
     jobs:
       - build:
           filters:
