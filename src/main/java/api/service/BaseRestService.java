@@ -10,6 +10,8 @@ import org.aeonbits.owner.ConfigFactory;
 import org.apache.http.HttpStatus;
 import utils.PropsConfig;
 
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 
 public class BaseRestService {
@@ -24,13 +26,12 @@ public class BaseRestService {
     }
 
     public static ResponseSpecification getResponseSpec() {
+        Map<String, Object> expectedHeadersList = Map.of("Server", "Cowboy", "Connection", "keep-alive",
+                "X-Powered-By", "Express", "Content-Type", "application/json; charset=utf-8",
+                "Via", "1.1 vegur");
         return new ResponseSpecBuilder()
                 .expectStatusCode(HttpStatus.SC_OK)
-                .expectHeader("Server", "Cowboy")
-                .expectHeader("Connection", "keep-alive")
-                .expectHeader("X-Powered-By", "Express")
-                .expectHeader("Content-Type", "application/json; charset=utf-8")
-                .expectHeader("Via", "1.1 vegur")
+                .expectHeaders(expectedHeadersList)
                 .build();
     }
 
