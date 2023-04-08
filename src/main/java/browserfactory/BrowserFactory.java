@@ -43,7 +43,7 @@ public class BrowserFactory {
                 driverThread.set(new ChromeDriver(getChromeOptions()));
             } else if (FIREFOX.getBrowser().equalsIgnoreCase(browserName)) {
 //                System.setProperty(DRIVER_NAME_FIREFOX, FIREFOX_DRIVER_PATH);
-                WebDriverManager.chromedriver().setup();
+                WebDriverManager.firefoxdriver().setup();
                 driverThread.set(new FirefoxDriver(getFireFoxOptions()));
             }
         }
