@@ -42,6 +42,7 @@ jobs:
       - checkout
       - browser-tools/install-firefox
       - browser-tools/install-geckodriver
+
       - when:
           condition: <<parameters.install-geckodriver>>
           steps:
@@ -104,6 +105,7 @@ workflows:
     when:
       and:
         - equal: [ false, << pipeline.parameters.ApiTrigger >>]
+        - equal: [ false, << pipeline.parameters.geckodriver-install-dir >>]
     jobs:
       - build:
           filters:
