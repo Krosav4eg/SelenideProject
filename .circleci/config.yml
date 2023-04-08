@@ -16,6 +16,12 @@ parameters:
   ApiTrigger:
     type: boolean
     default: false
+  geckodriver-install-dir:
+    type: string
+    default: /home/circleci/SeleniumProject/src/main/resources/drivers
+  install-geckodriver:
+    type: boolean
+    default: true
 
 jobs:
   build:
@@ -36,6 +42,11 @@ jobs:
       - checkout
       - browser-tools/install-firefox
       - browser-tools/install-geckodriver
+      - when:
+          condition: <<parameters.install-geckodriver>>
+          steps:
+            - install-geckodriver:
+                install-dir: <<parameters.geckodriver-install-dir>>
 
       - restore_cache:
           keys:

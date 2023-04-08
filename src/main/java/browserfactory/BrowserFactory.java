@@ -14,7 +14,7 @@ public class BrowserFactory {
 
     private static final ThreadLocal<WebDriver> driverThread = new ThreadLocal<WebDriver>();
     public static final String DRIVER_NAME_FIREFOX = "webdriver.gecko.driver";
-    public static final String FIREFOX_DRIVER_PATH = "/usr/local/bin/geckodriver";
+    public static final String FIREFOX_DRIVER_PATH = System.getProperty("user.dir") + "/src/main/resources/drivers/geckodriver.exe";
 
     private static volatile BrowserFactory instance;
 
