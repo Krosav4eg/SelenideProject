@@ -17,14 +17,11 @@ parameters:
     type: boolean
     default: false
   geckodriver-install-dir:
-    default: /home/circleci/SeleniumProject/src/main/resources/drivers
-    description: |
-      Directory in which to install Geckodriver
     type: string
+    default: /home/circleci/SeleniumProject/src/main/resources/drivers
   install-geckodriver:
-      default: true
-      description: Install Geckodriver
-      type: boolean
+    type: boolean
+    default: true
 
 jobs:
   build:
