@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   slack: circleci/slack@3.4.2
+  browser-tools: circleci/browser-tools@1.4.0
 
 parameters:
   suite:
@@ -33,6 +34,8 @@ jobs:
 
     steps:
       - checkout
+      - browser-tools/install-firefox
+      - browser-tools/install-geckodriver
 
       - restore_cache:
           keys:
