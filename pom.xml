@@ -114,6 +114,13 @@
             <artifactId>json-path</artifactId>
             <version>${json-path}</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.rsheremeta</groupId>
+            <artifactId>Allure-Environment-Creator</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/libs/Allure-Environment-Creator-1.0.jar</systemPath>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
