@@ -16,5 +16,6 @@ After doing the previous steps, in order to run tests in IntelliJ IDEA you need 
 
     1.Go to src/test/java/tests -> select test class you need
     2.Right click -> Run 'test'
-    3.Or use terminall command 'mvn clean test' to run test suit 
-    4.To see allure report use 'mvn allure:serve allure:report' command in terminall
+    3.Or use terminal command 'mvn clean test' to run all test suits
+    4.For running a specific suite use this command: mvn clean test -DxmlSuiteFile=<Sute Name>
+    5.To see allure report use 'mvn allure:serve allure:report' command in terminall
