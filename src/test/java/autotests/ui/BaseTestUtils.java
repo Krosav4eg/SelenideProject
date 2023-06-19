@@ -6,6 +6,7 @@ import lombok.extern.log4j.Log4j2;
 import org.aeonbits.owner.ConfigFactory;
 import utils.PropsConfig;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Log4j2
@@ -16,10 +17,14 @@ public class BaseTestUtils {
     /**
      * Current method necessary for setting up information about testing environment.
      */
+
     @Step("Set all detailed information about Environment")
     protected static synchronized void setEnvironmentValuesForAllure() {
-        Map<String, String> envData = Map.of("Browser", PROPS.BASE_BROWSER(), "Browser.Version", "111.0, (64 bit)",
-                "Base UI URL", PROPS.BASE_URL(), "Base API URL", PROPS.BASE_API_URL());
+        Map<String, String> envData = new HashMap<>();
+        envData.put("Browser", PROPS.BASE_BROWSER());
+        envData.put("Browser.Version", "111.0, (64 bit)");
+        envData.put("Base UI URL", PROPS.BASE_URL());
+        envData.put("Base API URL", PROPS.BASE_API_URL());
         AllureEnv.createAllureEnvironmentFile(envData);
         envData.clear();
         log.info("***** Allure environmental data has been gathered successfully *****");
