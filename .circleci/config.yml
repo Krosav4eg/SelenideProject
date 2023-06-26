@@ -113,6 +113,8 @@ workflows:
           NightlyRunNotify: true
 
   on_demand:
-    when: [ << pipeline.parameters.suite >>, << pipeline.parameters.ApiTrigger >> ]
+    when: << pipeline.parameters.ApiTrigger >>
+      and:
+      - or: << pipeline.parameters.suite >>
     jobs:
       - build
