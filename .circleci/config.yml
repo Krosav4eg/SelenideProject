@@ -115,6 +115,6 @@ workflows:
   on_demand:
     when: << pipeline.parameters.ApiTrigger >>
       and:
-      - or: << pipeline.parameters.suite >>
+         - or: << pipeline.parameters.suite >>
     jobs:
       - build
