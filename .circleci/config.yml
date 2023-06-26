@@ -115,7 +115,6 @@ workflows:
   on_demand:
     when:
       condition:
-        or:
           - and:
             - equal: [ true, << pipeline.parameters.ApiTrigger >>]
           - and: [ << pipeline.parameters.suite >>]
