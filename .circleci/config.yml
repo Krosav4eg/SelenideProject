@@ -118,6 +118,6 @@ workflows:
         or:
           - and:
             - equal: [ true, << pipeline.parameters.ApiTrigger >>]
-            - or: [ << pipeline.parameters.suite >>]
+            - not: [ << pipeline.parameters.suite >>]
     jobs:
       - build
