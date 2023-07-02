@@ -155,10 +155,6 @@
                     <reportsDirectory>${basedir}/target/test-output</reportsDirectory>
                 </configuration>
             </plugin>
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.22.2</version>
-            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
