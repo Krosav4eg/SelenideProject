@@ -75,7 +75,7 @@ commands:
   store-archived-allure-artifacts:
     description: "Upload archived allure artifacts"
     steps:
-      - run:
+      - store_artifacts:
           name: Upload archived artifacts
           path: artifacts-<< pipeline.parameters.suite >>.tar
 
@@ -90,9 +90,10 @@ commands:
   store-generated-allure-artifacts:
     description: "Store generated allure report"
     steps:
-      name: Upload Allure report
-      path: target/site/allure-maven-plugin
-      destination: Report/Allure
+      - store_artifacts:
+          name: Upload Allure report
+          path: target/site/allure-maven-plugin
+          destination: Report/Allure
 
   send-notification-to-slack-channel:
     description: "Send notification to Slack channel"
