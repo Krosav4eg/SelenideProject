@@ -75,8 +75,9 @@ commands:
   store-archived-allure-artifacts:
     description: "Upload archived allure artifacts"
     steps:
-      name: Upload archived artifacts
-      path: artifacts-<< pipeline.parameters.suite >>.tar
+      - run:
+          name: Upload archived artifacts
+          path: artifacts-<< pipeline.parameters.suite >>.tar
 
   allure-report-generation:
     description: "Generate allure report"
