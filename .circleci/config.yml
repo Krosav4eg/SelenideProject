@@ -67,7 +67,7 @@ commands:
     description: "Archive allure artifacts"
     steps:
       - run:
-          name: Archive allure artifacts
+          name: Archive artifacts
           when: always
           command:
             tar -cvf artifacts-<< pipeline.parameters.suite >>.tar target/;
@@ -76,7 +76,7 @@ commands:
     description: "Upload archived allure artifacts"
     steps:
       - store_artifacts:
-          name: Upload archived allure artifacts
+          name: Upload archived artifacts
           path: artifacts-<< pipeline.parameters.suite >>.tar
 
   allure-report-generation:
