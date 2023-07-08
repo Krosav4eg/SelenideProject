@@ -4,6 +4,6 @@ allure-results/
 .allure/
 logs/
 build/
-listings-ui-api-automation.iml
+SelenideProject.iml
 *.html
 *.png

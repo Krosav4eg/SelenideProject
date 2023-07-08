@@ -1,42 +1,45 @@
 version: 2.1
 orbs:
   slack: circleci/slack@3.4.2
-  browser-tools: circleci/browser-tools@1.4.0
+  browser-tools: circleci/browser-tools@1.4.1
 
 parameters:
   suite:
     type: string
-    default: RegressionSuite
-  NightlyRunNotify:
-    type: boolean
-    default: true
+    default: Smoke
   notifyToSlack:
     type: boolean
     default: true
   ApiTrigger:
     type: boolean
     default: false
+  NightlyRunNotify:
+    type: boolean
+    default: true
 
-jobs:
-  build:
-    parameters:
-      NightlyRunNotify:
-        type: boolean
-        default: false
 
+executors:
+  test-executor:
     docker:
       - image: cimg/openjdk:11.0.19-browsers
 
-    working_directory: ~/SeleniumProject
+    working_directory: ~/SelenideProject
 
     environment:
-      MAVEN_OPTS: -Xmx3200m
+      MAVEN_OPTS: -Xmx4096m
 
+commands:
+  install-browsers:
+    description: "Checkout to my code and install browsers"
     steps:
       - checkout
-      - browser-tools/install-firefox
       - browser-tools/install-geckodriver
+      - browser-tools/install-firefox
 
+
+  restore-and-save-cache:
+    description: "Restore and save cache"
+    steps:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "pom.xml" }}
@@ -50,34 +53,50 @@ jobs:
 
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
+  running-automation-tests:
+    description: "Running automation tests"
+    steps:
       - run:
           name: Run tests
           command: mvn
             -DxmlSuiteFile=<< pipeline.parameters.suite >>
             clean test
-          no_output_timeout: 40m
+          no_output_timeout: 20m
 
+  archive-allure-artifacts:
+    description: "Archive allure artifacts"
+    steps:
       - run:
           name: Archive artifacts
           when: always
           command:
             tar -cvf artifacts-<< pipeline.parameters.suite >>.tar target/;
 
-      - store_artifacts:
-          name: Upload archived artifacts
-          path: artifacts-<< pipeline.parameters.suite >>.tar
+  store-archived-allure-artifacts:
+    description: "Upload archived allure artifacts"
+    steps:
+      name: Upload archived artifacts
+      path: artifacts-<< pipeline.parameters.suite >>.tar
 
+  allure-report-generation:
+    description: "Generate allure report"
+    steps:
       - run:
           name: Allure report generation (allure-results -> allure-report)
           command: mvn io.qameta.allure:allure-maven:report
           when: always
 
-      - store_artifacts:
-          name: Upload Allure report
-          path: target/site/allure-maven-plugin
-          destination: Report/Allure
+  store-generated-allure-artifacts:
+    description: "Store generated allure report"
+    steps:
+      name: Upload Allure report
+      path: target/site/allure-maven-plugin
+      destination: Report/Allure
 
-      - when:
+  send-notification-to-slack-channel:
+    description: "Send notification to Slack channel"
+    steps:
+       - when:
           condition: << pipeline.parameters.notifyToSlack >>
           steps:
             - slack/status:
@@ -85,6 +104,25 @@ jobs:
                 fail_only: false
                 only_for_branches: master
                 webhook: $SLACK_WEBHOOK
+
+jobs:
+  #There is a custom name of my job. We can change it anytime
+  automation-tests-running:
+    parameters:
+      NightlyRunNotify:
+        type: boolean
+        default: false
+    executor: test-executor
+    #There is all custom names which located under 'Commands' section
+    steps:
+      - install-browsers
+      - restore-and-save-cache
+      - running-automation-tests
+      - archive-allure-artifacts
+      - store-archived-allure-artifacts
+      - allure-report-generation
+      - store-generated-allure-artifacts
+      - send-notification-to-slack-channel
 
 
 workflows:
@@ -94,7 +132,7 @@ workflows:
       and:
         - equal: [ false, << pipeline.parameters.ApiTrigger >>]
     jobs:
-      - build:
+      - automation-tests-running:
           filters:
             branches:
               only:
@@ -109,10 +147,12 @@ workflows:
               only:
                 - master
     jobs:
-      - build:
+      - automation-tests-running:
           NightlyRunNotify: true
 
-  on_demand:
+  on-demand:
     when: << pipeline.parameters.ApiTrigger >>
     jobs:
-      - build
+      - buid_approval:
+            type: approval
+      - automation-tests-running
