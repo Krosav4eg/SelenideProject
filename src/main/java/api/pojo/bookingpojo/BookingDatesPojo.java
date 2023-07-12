@@ -4,6 +4,11 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * Class describes JSON data structure.
+ * This class doesn't contains any additional logic.
+ */
+
 @Data
 @Builder
 public class BookingDatesPojo {
@@ -13,12 +18,4 @@ public class BookingDatesPojo {
 
     @SerializedName("checkout")
     private String checkout;
-
-    public String getCheckin() {
-        return checkin;
-    }
-
-    public String getCheckout() {
-        return checkout;
-    }
 }

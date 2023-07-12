@@ -12,12 +12,11 @@ import java.io.IOException;
 
 /**
  * This class contains basic methods/helpers
- * for example: identifying properties information,
- * setting allure environment, modifying json file value.
+ * for modifying json file value.
  */
 
 @Log4j2
-public class BaseService {
+public abstract class BaseJsonModificationService {
 
     /**
      * A method required for modifying string value of field json file.

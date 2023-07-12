@@ -3,6 +3,9 @@ package api.dto;
 import api.pojo.bookingpojo.BookingCreationPojo;
 import api.pojo.bookingpojo.BookingDatesPojo;
 
+/**
+ * Class for creation request bodies.
+ */
 public class BookingGenerator {
 
     public static BookingCreationPojo getBookingDto() {
