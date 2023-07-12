@@ -14,7 +14,11 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
-public class BaseRestService {
+/**
+ * This class contains common specification and data which can be reused in specific classes' services.
+ */
+
+public abstract class BaseRestService {
 
     public static final PropsConfig PROPS_CONFIG = ConfigFactory.create(PropsConfig.class);
 
@@ -37,8 +41,8 @@ public class BaseRestService {
 
     public static String makeAuthorizationAndGetToken() {
         return given(getRequestSpecification())
-                .body(new User(PROPS_CONFIG.LOGIN(), PROPS_CONFIG.PASSWORD()))
                 .when()
+                .body(new User(PROPS_CONFIG.LOGIN(), PROPS_CONFIG.PASSWORD()))
                 .post("/auth")
                 .then().statusCode(HttpStatus.SC_OK).extract().path("token");
     }

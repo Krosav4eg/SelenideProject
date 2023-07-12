@@ -6,8 +6,12 @@ import com.google.gson.JsonObject;
 import io.restassured.response.Response;
 
 import static api.dto.BookingGenerator.getBookingDto;
-import static api.service.BookingService.generatePriceForJson;
+import static api.service.BookingJsonModificationService.generatePriceForJson;
 import static io.restassured.RestAssured.given;
+
+/**
+ * Following class contains common business actions (CRUD operations) which can be reused in tests.
+ */
 
 public class BookingSteps extends BookingRestService {
 
@@ -98,8 +102,7 @@ public class BookingSteps extends BookingRestService {
 
     public static Response getBookingId(String bookingId) {
         return given()
-                .spec(getRequestSpecification())
-                .and().accept("application/json")
+                .spec(getRequestSpecificationForBookingUpdate())
                 .when()
                 .get(UrlEndPoints.UPDATE_BOOKING.getData() + bookingId)
                 .then()
