@@ -1,4 +1,4 @@
-package driver;
+package ui.driver;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -13,9 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static browserfactory.BrowserFactory.getDriver;
+import static ui.browserfactory.BrowserFactory.getDriver;
 import static com.google.common.collect.Lists.newArrayList;
-import static driver.WebDriverWaits.*;
 
 public class WebElementInteractions {
     private static final String A_KEY = "a";
@@ -136,8 +135,8 @@ public class WebElementInteractions {
      */
 
     public static void clearAndPopulateField(WebElement element, String message) {
-        elementVisibility(element).clear();
-        elementVisibility(element).sendKeys(message);
+        WebDriverWaits.elementVisibility(element).clear();
+        WebDriverWaits.elementVisibility(element).sendKeys(message);
     }
 
 //    public static WebElement clearAndPopulateFieldAndPressEnter(WebElement field, String text) {
@@ -182,7 +181,7 @@ public class WebElementInteractions {
 
     public static String getTextOfWebElementsList(List<WebElement> webElementList) {
         List<String> stringElements = new ArrayList<>();
-        elementListVisibility(webElementList);
+        WebDriverWaits.elementListVisibility(webElementList);
         webElementList.forEach(element -> stringElements.add(element.getText()));
         return stringElements.toString();
     }

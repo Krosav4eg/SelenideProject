@@ -1,4 +1,4 @@
-package listeners;
+package ui.listeners;
 
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Attachment;

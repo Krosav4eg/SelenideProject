@@ -1,8 +1,7 @@
-package pages;
+package ui.pages;
 
 import io.qameta.allure.Step;
-
-import static helpers.ActionHelper.checkThatAllElementsContainsText;
+import ui.helpers.ActionHelper;
 
 
 public class NoteBooksPage extends AbstractPage {
@@ -10,7 +9,7 @@ public class NoteBooksPage extends AbstractPage {
     @Step("Check that goods tiles contains search word {searchWord}")
     public boolean checkThatGoodsTileContainsSearchWord(String searchWord) {
         getGoodItemFragment().witForAllGoodsBodyItemsArePresent();
-        return checkThatAllElementsContainsText(getGoodItemFragment().getGoodsTitle(), searchWord);
+        return ActionHelper.checkThatAllElementsContainsText(getGoodItemFragment().getGoodsTitle(), searchWord);
     }
 
     @Step("check that all goods items have size")

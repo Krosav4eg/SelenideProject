@@ -1,11 +1,11 @@
-package fragments;
+package ui.fragments;
 
 import com.codeborne.selenide.SelenideElement;
+import ui.helpers.ActionHelper;
 
 import static com.codeborne.selenide.Selectors.byCssSelector;
 import static com.codeborne.selenide.Selenide.$;
-import static driver.WebElementInteractions.isVisible;
-import static helpers.ActionHelper.clickOnButton;
+import static ui.driver.WebElementInteractions.isVisible;
 
 public class HeaderFragment {
     SelenideElement catalogMenuButton = $(byCssSelector("#fat-menu"));
@@ -16,7 +16,7 @@ public class HeaderFragment {
     SelenideElement catalogMenuList = $(byCssSelector("div.menu__hidden-content.ng-star-inserted"));
 
     public void clickOnCatalogMenuButton() {
-        clickOnButton(catalogMenuButton);
+        ActionHelper.clickOnButton(catalogMenuButton);
         isVisible(catalogMenuList);
 
     }

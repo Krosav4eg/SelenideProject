@@ -1,13 +1,13 @@
-package browserfactory;
+package ui.browserfactory;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import ui.driver.DriverCapabilities;
 
-import static browserfactory.BrowserTypes.CHROME;
-import static browserfactory.BrowserTypes.FIREFOX;
-import static driver.DriverCapabilities.*;
+import static ui.browserfactory.BrowserTypes.CHROME;
+import static ui.browserfactory.BrowserTypes.FIREFOX;
 
 
 public class BrowserFactory {
@@ -40,10 +40,10 @@ public class BrowserFactory {
         if (browserName != null) {
             if (CHROME.getBrowser().equalsIgnoreCase(browserName)) {
                 WebDriverManager.chromedriver().setup();
-                driverThread.set(new ChromeDriver(getChromeOptions()));
+                driverThread.set(new ChromeDriver(DriverCapabilities.getChromeOptions()));
             } else if (FIREFOX.getBrowser().equalsIgnoreCase(browserName)) {
                 System.setProperty(DRIVER_NAME_FIREFOX, FIREFOX_DRIVER_PATH);
-                driverThread.set(new FirefoxDriver(getFireFoxOptions()));
+                driverThread.set(new FirefoxDriver(DriverCapabilities.getFireFoxOptions()));
             }
         }
         return getDriver();

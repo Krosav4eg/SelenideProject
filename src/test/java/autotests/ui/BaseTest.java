@@ -1,19 +1,19 @@
 package autotests.ui;
 
-import browserfactory.BrowserFactory;
+import ui.browserfactory.BrowserFactory;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.google.common.collect.ImmutableMap;
 import io.qameta.allure.Step;
-import listeners.AllureListener;
+import ui.listeners.AllureListener;
 import lombok.extern.log4j.Log4j2;
 import org.aeonbits.owner.ConfigFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
-import pages.MainPage;
-import pages.NoteBooksPage;
+import ui.pages.MainPage;
+import ui.pages.NoteBooksPage;
 import utils.PropsConfig;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;

@@ -1,4 +1,4 @@
-package browserfactory;
+package ui.browserfactory;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

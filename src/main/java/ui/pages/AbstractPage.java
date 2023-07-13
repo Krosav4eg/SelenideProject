@@ -1,9 +1,9 @@
-package pages;
+package ui.pages;
 
-import fragments.FilterSideFragment;
-import fragments.GoodItemFragment;
-import fragments.HeaderFragment;
-import fragments.MenuCategoriesFragment;
+import ui.fragments.FilterSideFragment;
+import ui.fragments.GoodItemFragment;
+import ui.fragments.HeaderFragment;
+import ui.fragments.MenuCategoriesFragment;
 import lombok.Getter;
 import org.aeonbits.owner.ConfigFactory;
 import utils.PropsConfig;

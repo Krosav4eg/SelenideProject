@@ -1,4 +1,4 @@
-package driver;
+package ui.driver;
 
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.*;
@@ -9,7 +9,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
 
-import static browserfactory.BrowserFactory.getDriver;
+import static ui.browserfactory.BrowserFactory.getDriver;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class WebDriverWaits {

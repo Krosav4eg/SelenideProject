@@ -5,8 +5,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.RetryAnalyzer;
 
-import static data.CommonData.NOTE_BOOK_BRAND;
-import static data.CommonData.SEARCH_WORLD;
+import static ui.data.CommonData.NOTE_BOOK_BRAND;
+import static ui.data.CommonData.SEARCH_WORLD;
 
 
 @Feature("Notebooks Test")

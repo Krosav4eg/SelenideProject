@@ -1,9 +1,9 @@
-package driver;
+package ui.driver;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.Alert;
 
-import static browserfactory.BrowserFactory.getDriver;
+import static ui.browserfactory.BrowserFactory.getDriver;
 
 /**
  * This class is the container for single thread-safe instance of WebDriver.

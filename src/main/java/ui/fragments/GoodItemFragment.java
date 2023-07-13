@@ -1,12 +1,11 @@
-package fragments;
+package ui.fragments;
 
 import com.codeborne.selenide.ElementsCollection;
 import lombok.Getter;
+import ui.helpers.ActionHelper;
 
 import static com.codeborne.selenide.Selectors.byCssSelector;
 import static com.codeborne.selenide.Selenide.$$;
-import static helpers.ActionHelper.checkThatAllElementsAreVisible;
-import static helpers.ActionHelper.checkThatElementCollectionsHasSize;
 
 
 @Getter
@@ -15,11 +14,11 @@ public class GoodItemFragment {
     ElementsCollection goodsTitle = $$(byCssSelector("span.goods-tile__title"));
 
     public void witForAllGoodsBodyItemsArePresent() {
-        checkThatAllElementsAreVisible(goodsBodyItem);
+        ActionHelper.checkThatAllElementsAreVisible(goodsBodyItem);
     }
 
     public void checkSizeAllGoodsBodyItems(int elementsSize) {
-        checkThatElementCollectionsHasSize(goodsBodyItem, elementsSize);
+        ActionHelper.checkThatElementCollectionsHasSize(goodsBodyItem, elementsSize);
     }
 
 }

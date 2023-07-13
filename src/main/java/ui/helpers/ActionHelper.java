@@ -1,4 +1,4 @@
-package helpers;
+package ui.helpers;
 
 import com.codeborne.selenide.*;
 import org.openqa.selenium.WebElement;

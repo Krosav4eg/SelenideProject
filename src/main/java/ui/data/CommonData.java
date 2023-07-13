@@ -1,4 +1,4 @@
-package data;
+package ui.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
