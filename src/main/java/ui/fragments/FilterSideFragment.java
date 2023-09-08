@@ -5,6 +5,7 @@ import ui.helpers.ActionHelper;
 
 import static com.codeborne.selenide.Selectors.byCssSelector;
 import static com.codeborne.selenide.Selenide.$;
+import static ui.helpers.ActionHelper.setRequiredTextIntoXpath;
 
 public class FilterSideFragment {
     SelenideElement filterBarBody = $(byCssSelector(".side-filter__body.ng-star-inserted"));
@@ -12,8 +13,9 @@ public class FilterSideFragment {
 
     public FilterSideFragment selectBrandFromSideBar(String brandName) {
         ActionHelper.isElementDisplayed(filterBarBody);
-        ActionHelper.setRequiredTextIntoXpath(sidebarBrand, brandName).click();
-        ActionHelper.isElementSelected(ActionHelper.setRequiredTextIntoXpath(sidebarBrand, brandName));
+        ActionHelper.isElementDisplayed(setRequiredTextIntoXpath(sidebarBrand, brandName));
+        setRequiredTextIntoXpath(sidebarBrand, brandName).click();
+        ActionHelper.isElementSelected(setRequiredTextIntoXpath(sidebarBrand, brandName));
         return new FilterSideFragment();
     }
 }
