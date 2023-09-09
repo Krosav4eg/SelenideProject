@@ -9,11 +9,12 @@ import static ui.helpers.ActionHelper.setRequiredTextIntoXpath;
 
 public class FilterSideFragment {
     SelenideElement filterBarBody = $(byCssSelector(".side-filter__body.ng-star-inserted"));
+    SelenideElement closeCrossPopUpButton = $(byCssSelector("span.exponea-close-cross"));
     String sidebarBrand = "//ul[@class='checkbox-filter']//a[contains(@data-id, '%s')]";
 
     public FilterSideFragment selectBrandFromSideBar(String brandName) {
         ActionHelper.isElementDisplayed(filterBarBody);
-        ActionHelper.isElementDisplayed(setRequiredTextIntoXpath(sidebarBrand, brandName));
+        ActionHelper.clickOnButton(closeCrossPopUpButton);
         setRequiredTextIntoXpath(sidebarBrand, brandName).click();
         ActionHelper.isElementSelected(setRequiredTextIntoXpath(sidebarBrand, brandName));
         return new FilterSideFragment();
