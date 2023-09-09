@@ -1,5 +1,6 @@
 package ui.fragments;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import lombok.SneakyThrows;
 import ui.helpers.ActionHelper;
@@ -17,8 +18,8 @@ public class FilterSideFragment {
     public FilterSideFragment selectBrandFromSideBar(String brandName) {
         ActionHelper.isElementDisplayed(filterBarBody);
         ActionHelper.clickOnButton(closeCrossPopUpButton);
-        Thread.sleep(3000);
-        setRequiredTextIntoXpath(sidebarBrand, brandName).click();
+        SelenideElement element = setRequiredTextIntoXpath(sidebarBrand, brandName);
+        element.shouldBe(Condition.enabled).click();
         ActionHelper.isElementSelected(setRequiredTextIntoXpath(sidebarBrand, brandName));
         return new FilterSideFragment();
     }
