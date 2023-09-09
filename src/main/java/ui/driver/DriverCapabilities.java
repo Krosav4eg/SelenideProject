@@ -17,10 +17,7 @@ public class DriverCapabilities {
 
     public static FirefoxOptions getFireFoxOptions() {
         FirefoxOptions options = new FirefoxOptions();
-        options.addArguments("--width=1530");
-        options.addArguments("--height=780");
-        options.addArguments("--disable-notifications");
-        options.addArguments("disable-infobars");
+        options.merge(getChromeOptions());
         return options;
     }
 }
