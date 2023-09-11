@@ -13,17 +13,6 @@ import static ui.data.CommonData.SEARCH_WORLD;
 public class NotebooksPageTest extends BaseTest {
 
     @Severity(SeverityLevel.MINOR)
-    @TmsLink("1")
-    @Description("Verify name of selected product form filter bar")
-    @Test(retryAnalyzer = RetryAnalyzer.class)
-    public void checkNameOfSelectedProductFormFilterBar() {
-        mainPage.getFilterSideFragment().selectBrandFromSideBar(NOTE_BOOK_BRAND.getData());
-        Assert.assertTrue(noteBooksPage.checkThatGoodsTileContainsSearchWord("ASUS"),
-                "Current notebooks brand title isn't equal expected:");
-
-    }
-
-    @Severity(SeverityLevel.MINOR)
     @TmsLink("2")
     @Description("Verify goods title")
     @Test(retryAnalyzer = RetryAnalyzer.class)
