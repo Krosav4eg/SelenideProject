@@ -15,7 +15,7 @@ public class ExponeaBannerFragment {
     SelenideElement exponeaBannerCloseButton = $(new By.ByXPath("//span[@class='exponea-close']"));
 
     @Step("Click on close button in exponea banner")
-    public ExponeaBannerFragment clickOnNoteBooksCategories() {
+    public ExponeaBannerFragment clickExponeaBannerCloseButton() {
         ActionHelper.isElementDisplayed(exponeaBannerBody);
         ActionHelper.clickOnButton(exponeaBannerCloseButton);
         return new ExponeaBannerFragment();

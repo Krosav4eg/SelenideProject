@@ -28,7 +28,7 @@ public class NotebooksPageTest extends BaseTest {
     @Description("Verify goods title")
     @Test(retryAnalyzer = RetryAnalyzer.class)
     public void checkNotebooksGoodsTitles() {
-        noteBooksPage.getExponeaBannerFragment().clickOnNoteBooksCategories();
+        noteBooksPage.getExponeaBannerFragment().clickExponeaBannerCloseButton();
         Assert.assertTrue(noteBooksPage.checkThatGoodsTileContainsSearchWord(SEARCH_WORLD.getData()),
                 "Current notebooks goods title isn't equal expected:");
     }
@@ -39,7 +39,7 @@ public class NotebooksPageTest extends BaseTest {
     @Test(retryAnalyzer = RetryAnalyzer.class)
     public void checkGoodsItemsSize() {
         int expectedSize = 60;
-        noteBooksPage.getExponeaBannerFragment().clickOnNoteBooksCategories();
+        noteBooksPage.getExponeaBannerFragment().clickExponeaBannerCloseButton();
         noteBooksPage.checkThatGoodsItemsHaveSize(expectedSize);
     }
 }
