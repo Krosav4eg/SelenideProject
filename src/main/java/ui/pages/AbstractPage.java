@@ -1,9 +1,6 @@
 package ui.pages;
 
-import ui.fragments.FilterSideFragment;
-import ui.fragments.GoodItemFragment;
-import ui.fragments.HeaderFragment;
-import ui.fragments.MenuCategoriesFragment;
+import ui.fragments.*;
 import lombok.Getter;
 import org.aeonbits.owner.ConfigFactory;
 import utils.PropsConfig;
@@ -21,4 +18,5 @@ public class AbstractPage {
     protected MenuCategoriesFragment menuCategoriesFragment = new MenuCategoriesFragment();
     protected GoodItemFragment goodItemFragment = new GoodItemFragment();
     protected FilterSideFragment filterSideFragment = new FilterSideFragment();
+    protected ExponeaBannerFragment exponeaBannerFragment = new ExponeaBannerFragment();
 }
