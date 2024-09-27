@@ -12,9 +12,7 @@ import org.aeonbits.owner.ConfigFactory;
 import ui.pages.NoteBooksPage;
 import utils.PropsConfig;
 
-import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.github.automatedowl.tools.AllureEnvironmentWriter.allureEnvironmentWriter;
 import static ui.browserfactory.BrowserFactory.getDriver;
 
