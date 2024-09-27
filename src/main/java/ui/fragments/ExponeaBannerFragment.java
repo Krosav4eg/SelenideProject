@@ -5,14 +5,13 @@ import org.openqa.selenium.By;
 import ui.helpers.ActionHelper;
 
 
-import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 
 
 public class ExponeaBannerFragment {
 
     SelenideElement exponeaBannerBody = $(new By.ByXPath("//div[@class='exponea-banner exponea-survey exponea-animate']"));
-    SelenideElement exponeaBannerCloseButton = $(new By.ByXPath("//span[@class='exponea-close']"));
+    SelenideElement exponeaBannerCloseButton = $(new By.ByCssSelector("span.exponea-close-cross"));
 
     @Step("Click on close button in exponea banner")
     public ExponeaBannerFragment clickExponeaBannerCloseButton() {
