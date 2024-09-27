@@ -3,32 +3,28 @@ package autotests.ui;
 import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import utils.RetryAnalyzer;
 
-import static ui.data.CommonData.NOTE_BOOK_BRAND;
 import static ui.data.CommonData.SEARCH_WORLD;
 
 
 @Feature("Notebooks Test")
 public class NotebooksPageTest extends BaseTest {
 
-    @Severity(SeverityLevel.MINOR)
+    @Test()
     @TmsLink("2")
+    @Severity(SeverityLevel.MINOR)
     @Description("Verify goods title")
-    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void checkNotebooksGoodsTitles() {
-        noteBooksPage.getExponeaBannerFragment().clickExponeaBannerCloseButton();
         Assert.assertTrue(noteBooksPage.checkThatGoodsTileContainsSearchWord(SEARCH_WORLD.getData()),
                 "Current notebooks goods title isn't equal expected:");
     }
 
-    @Severity(SeverityLevel.MINOR)
+    @Test()
     @TmsLink("3")
+    @Severity(SeverityLevel.MINOR)
     @Description("Verify goods size")
-    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void checkGoodsItemsSize() {
         int expectedSize = 60;
-        noteBooksPage.getExponeaBannerFragment().clickExponeaBannerCloseButton();
         noteBooksPage.checkThatGoodsItemsHaveSize(expectedSize);
     }
 }

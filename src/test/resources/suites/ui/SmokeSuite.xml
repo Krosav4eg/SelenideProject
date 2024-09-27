@@ -6,7 +6,6 @@
         <classes>
             <class name="autotests.ui.NotebooksPageTest">
                 <methods>
-                    <include name="checkRedirectionToNotebooksPage"/>
                     <include name="checkNotebooksGoodsTitles"/>
                     <include name="checkGoodsItemsSize"/>
                 </methods>

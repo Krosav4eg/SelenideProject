@@ -12,7 +12,7 @@ import static ui.browserfactory.BrowserTypes.FIREFOX;
 
 public class BrowserFactory {
 
-    private static final ThreadLocal<WebDriver> driverThread = new ThreadLocal<WebDriver>();
+    private static final ThreadLocal<WebDriver> driverThread = new ThreadLocal<>();
     public static final String DRIVER_NAME_FIREFOX = "webdriver.gecko.driver";
     public static final String FIREFOX_DRIVER_PATH = "/usr/local/bin/geckodriver";
 
@@ -47,10 +47,5 @@ public class BrowserFactory {
             }
         }
         return getDriver();
-    }
-
-    public static void closeBrowser() {
-        if (getDriver() != null)
-            getDriver().quit();
     }
 }
