@@ -12,19 +12,18 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
-import ui.pages.MainPage;
 import ui.pages.NoteBooksPage;
 import utils.PropsConfig;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 import static com.github.automatedowl.tools.AllureEnvironmentWriter.allureEnvironmentWriter;
+import static ui.browserfactory.BrowserFactory.getDriver;
 
 @Log4j2
 @Listeners({AllureListener.class})
 public class BaseTest {
     public static final PropsConfig PROPS = ConfigFactory.create(PropsConfig.class);
-    MainPage mainPage = new MainPage();
     NoteBooksPage noteBooksPage = new NoteBooksPage();
 
     @BeforeSuite

@@ -3,9 +3,7 @@ package autotests.ui;
 import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import utils.RetryAnalyzer;
 
-import static ui.data.CommonData.NOTE_BOOK_BRAND;
 import static ui.data.CommonData.SEARCH_WORLD;
 
 
@@ -15,7 +13,7 @@ public class NotebooksPageTest extends BaseTest {
     @Severity(SeverityLevel.MINOR)
     @TmsLink("2")
     @Description("Verify goods title")
-    @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Test()
     public void checkNotebooksGoodsTitles() {
         Assert.assertTrue(noteBooksPage.checkThatGoodsTileContainsSearchWord(SEARCH_WORLD.getData()),
                 "Current notebooks goods title isn't equal expected:");

@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 @Getter
 public class GoodItemFragment {
-    ElementsCollection goodsBodyItem = $$(byCssSelector("a.goods-tile__picture.ng-star-inserted"));
+    ElementsCollection goodsBodyItem = $$(byCssSelector("span.goods-tile__title"));
     ElementsCollection goodsTitle = $$(byCssSelector("span.goods-tile__title"));
 
     public void witForAllGoodsBodyItemsArePresent() {
