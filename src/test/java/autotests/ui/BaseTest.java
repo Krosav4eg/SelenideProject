@@ -14,7 +14,9 @@ import utils.PropsConfig;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.github.automatedowl.tools.AllureEnvironmentWriter.allureEnvironmentWriter;
+import static ui.browserfactory.BrowserFactory.getDriver;
 
 @Log4j2
 @Listeners({AllureListener.class})
@@ -49,6 +51,8 @@ public class BaseTest {
 
     @AfterClass(alwaysRun = true)
     public void closeBrowser() {
-        closeWebDriver();
+        if (getDriver() != null) {
+            getDriver().close();
+        }
     }
 }
