@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 @Getter
 public class GoodItemFragment {
-    ElementsCollection goodsBodyItem = $$(byCssSelector("span.goods-tile__title"));
+    ElementsCollection goodsBodyItem = $$(byCssSelector("div.goods-tile__content"));
     ElementsCollection goodsTitle = $$(byCssSelector("span.goods-tile__title"));
 
     public void witForAllGoodsBodyItemsArePresent() {
