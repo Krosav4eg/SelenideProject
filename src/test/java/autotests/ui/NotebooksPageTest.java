@@ -23,7 +23,7 @@ public class NotebooksPageTest extends BaseTest {
     @Severity(SeverityLevel.MINOR)
     @TmsLink("3")
     @Description("Verify goods size")
-    @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Test()
     public void checkGoodsItemsSize() {
         int expectedSize = 60;
         noteBooksPage.getExponeaBannerFragment().clickExponeaBannerCloseButton();
