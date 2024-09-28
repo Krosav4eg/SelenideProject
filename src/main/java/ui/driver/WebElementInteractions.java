@@ -2,7 +2,6 @@ package ui.driver;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.net.MalformedURLException;
@@ -167,18 +166,6 @@ public class WebElementInteractions {
      * SELECT
      */
 
-    protected static void clickOnIndexFromElementList(List<WebElement> element, int elementIndex) {
-        List<String> stringElements = new ArrayList<>();
-        try {
-            for (int i = 0; i <= element.size(); i++) {
-                element.get(elementIndex).click();
-            }
-        } catch (ElementNotVisibleException | ClassCastException | IndexOutOfBoundsException e) {
-            e.getMessage();
-        }
-    }
-
-
     public static String getTextOfWebElementsList(List<WebElement> webElementList) {
         List<String> stringElements = new ArrayList<>();
         WebDriverWaits.elementListVisibility(webElementList);
@@ -245,10 +232,6 @@ public class WebElementInteractions {
     public static void mouseOverAndClick(WebElement element, int x, int y) {
         scrollToCenter(element);
         newActions().moveToElement(element, x, y).click().build().perform();
-    }
-
-    public static TouchActions newTouchActions() {
-        return new TouchActions(getDriver());
     }
 
     /**
