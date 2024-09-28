@@ -6,7 +6,7 @@ import lombok.Data;
 
 /**
  * Class describes only JSON data structure.
- * This class doesn't contains any additional logic.
+ * This class doesn't contain any additional logic.
  */
 
 @Data

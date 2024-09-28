@@ -15,7 +15,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 public class WebDriverWaits {
     public static final PropsConfig PROPS = ConfigFactory.create(PropsConfig.class);
     private static final long DEFAULT_POLLING_MILLISECONDS = 500;
-    private static final int WAITING_TIMEOUT = Integer.parseInt(PROPS.WAITING_TIMEOUT());
+    private static final Duration WAITING_TIMEOUT = Duration.ofSeconds(Integer.parseInt(PROPS.WAITING_TIMEOUT()));
     private static final WebDriverWait WAIT = new WebDriverWait(getDriver(), WAITING_TIMEOUT);
 
 
@@ -50,24 +50,11 @@ public class WebDriverWaits {
      */
     public static WebElement waitForElementClickable(WebElement element) {
         Wait<WebDriver> newWait = new FluentWait<>(getDriver())
-                .withTimeout(Duration.ofSeconds(WAITING_TIMEOUT))
+                .withTimeout(WAITING_TIMEOUT)
                 .pollingEvery(Duration.ofMillis(DEFAULT_POLLING_MILLISECONDS))
                 .ignoring(NoSuchElementException.class)
                 .ignoring(StaleElementReferenceException.class);
         return newWait.until(ExpectedConditions.elementToBeClickable(element));
-    }
-
-    /**
-     * Method was created for helps to search for elements with certain intervals within a given period of time.
-     * Web element searching every 500 MILLISECONDS for 30 seconds.
-     *
-     * @param element - used to find the element
-     */
-    public static WebElement waitForElementVisible(WebElement element) {
-        WAIT.withTimeout(Duration.ofSeconds(WAITING_TIMEOUT))
-                .pollingEvery(Duration.ofMillis(DEFAULT_POLLING_MILLISECONDS))
-                .ignoring(NoSuchElementException.class);
-        return WAIT.until(visibilityOf(element));
     }
 
     public static WebElement elementVisibility(WebElement element) {

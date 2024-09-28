@@ -10,7 +10,7 @@ Local Setup:
         - Enable annotation processing in IDE settings;
         - Install Lombok plugin;
         - Restart IDE
-    This Test Automation Framework built on JDK11, Maven, Rest Assured and TestNG.
+    This Test Automation Framework built on JDK11, Selenide, Maven, Rest Assured and TestNG.
 
 After doing the previous steps, in order to run tests in IntelliJ IDEA you need to:
 
