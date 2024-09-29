@@ -12,7 +12,6 @@ import utils.PropsConfig;
  */
 @Getter
 public class AbstractPage {
-    public static final PropsConfig PROPS = ConfigFactory.create(PropsConfig.class);
 
     protected HeaderFragment headerFragment = new HeaderFragment();
     protected MenuCategoriesFragment menuCategoriesFragment = new MenuCategoriesFragment();
