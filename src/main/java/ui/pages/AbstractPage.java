@@ -2,8 +2,7 @@ package ui.pages;
 
 import ui.fragments.*;
 import lombok.Getter;
-import org.aeonbits.owner.ConfigFactory;
-import utils.PropsConfig;
+
 
 /**
  * AbstractPage class contains all common fragments in application
