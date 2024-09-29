@@ -29,9 +29,9 @@ public class BaseTest {
     void setAllureEnvironment() {
         allureEnvironmentWriter(
                 ImmutableMap.<String, String>builder()
-                        .put("Browser", "Firefox")
-                        .put("Browser.Version", "121.0.1, (64 bit)")
-                        .put("OS", "Windows 10")
+                        .put("Browser", PROPS.BASE_BROWSER())
+                        .put("Browser.Version", "129.0.6668.71, (64 бит)")
+                        .put("OS", "Windows 11")
                         .put("URL_UI", ROZETKA_BASE_URL)
                         .put("URL_API", URL_API)
                         .build());
