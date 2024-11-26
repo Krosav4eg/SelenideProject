@@ -15,9 +15,8 @@ public class ExponeaBannerFragment {
     SelenideElement exponeaBannerCloseButton = $(byCssSelector("span.exponea-close-cross"));
 
     @Step("Click on close button in exponea banner")
-    public ExponeaBannerFragment clickExponeaBannerCloseButton() {
+    public void clickExponeaBannerCloseButton() {
         ActionHelper.isElementDisplayed(exponeaBannerBody);
         ActionHelper.clickOnButton(exponeaBannerCloseButton);
-        return new ExponeaBannerFragment();
     }
 }

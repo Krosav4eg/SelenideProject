@@ -9,8 +9,8 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
 
-import static ui.browserfactory.BrowserFactory.getDriver;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
+import static ui.browserfactory.DriverManager.getDriver;
 
 public class WebDriverWaits {
     public static final PropsConfig PROPS = ConfigFactory.create(PropsConfig.class);

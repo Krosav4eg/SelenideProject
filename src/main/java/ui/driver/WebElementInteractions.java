@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static ui.browserfactory.BrowserFactory.getDriver;
 import static com.google.common.collect.Lists.newArrayList;
+import static ui.browserfactory.DriverManager.getDriver;
 
 public class WebElementInteractions {
     private static final String A_KEY = "a";

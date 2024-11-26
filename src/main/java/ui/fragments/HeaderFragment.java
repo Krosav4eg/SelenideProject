@@ -18,6 +18,5 @@ public class HeaderFragment {
     public void clickOnCatalogMenuButton() {
         ActionHelper.clickOnButton(catalogMenuButton);
         isVisible(catalogMenuList);
-
     }
 }
