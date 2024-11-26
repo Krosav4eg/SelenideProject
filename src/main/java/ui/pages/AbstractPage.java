@@ -12,7 +12,7 @@ import lombok.Getter;
 @Getter
 public class AbstractPage {
 
-    protected HeaderFragment headerFragment = new HeaderFragment();
+//    protected HeaderFragment headerFragment = new HeaderFragment();
     protected MenuCategoriesFragment menuCategoriesFragment = new MenuCategoriesFragment();
     protected GoodItemFragment goodItemFragment = new GoodItemFragment();
     protected FilterSideFragment filterSideFragment = new FilterSideFragment();

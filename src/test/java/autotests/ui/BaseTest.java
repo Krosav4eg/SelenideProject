@@ -1,7 +1,8 @@
 package autotests.ui;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
-import ui.browserfactory.BrowserFactory;
+import ui.browserfactory.BrowserFactoryProvider;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.google.common.collect.ImmutableMap;
@@ -14,14 +15,12 @@ import utils.PropsConfig;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.github.automatedowl.tools.AllureEnvironmentWriter.allureEnvironmentWriter;
-import static ui.browserfactory.BrowserFactory.getDriver;
+import static ui.browserfactory.DriverManager.quitDriver;
 
 @Log4j2
 @Listeners({AllureListener.class})
 public class BaseTest {
     public static final PropsConfig PROPS = ConfigFactory.create(PropsConfig.class);
-    public static final String ROZETKA_BASE_URL = "https://rozetka.com.ua/";
-    public static final String URL_API = "https://restful-booker.herokuapp.com/";
     NoteBooksPage noteBooksPage = new NoteBooksPage();
 
     @BeforeSuite
@@ -30,27 +29,26 @@ public class BaseTest {
         allureEnvironmentWriter(
                 ImmutableMap.<String, String>builder()
                         .put("Browser", PROPS.BASE_BROWSER())
-                        .put("Browser.Version", "129.0.6668.71, (64 бит)")
+                        .put("Browser.Version", "Версия 131.0.6778.86 (Официальная сборка), (64 бит)")
                         .put("OS", "Windows 11")
-                        .put("URL_UI", ROZETKA_BASE_URL)
-                        .put("URL_API", URL_API)
+                        .put("URL_UI", PROPS.BASE_BROWSER())
+                        .put("URL_API", PROPS.BASE_API_URL())
                         .build());
     }
 
     @BeforeClass(alwaysRun = true)
     public void mainSteps() {
-        WebDriverRunner.setWebDriver(BrowserFactory.getInstance().createDriverInstance(PROPS.BASE_BROWSER()));
+        WebDriver driver =BrowserFactoryProvider.getInstance().createDriverInstance(PROPS.BASE_BROWSER());
+        WebDriverRunner.setWebDriver(driver);
+        driver.manage().window().maximize();
         Configuration.timeout = Integer.parseInt(PROPS.WAITING_TIMEOUT());
         Configuration.baseUrl = PROPS.BASE_URL();
         open(Configuration.baseUrl);
-        noteBooksPage.getExponeaBannerFragment().clickExponeaBannerCloseButton();
         log.info("****** Browser has been started ******");
     }
 
     @AfterClass(alwaysRun = true)
     public void closeBrowser() {
-        if (getDriver() != null) {
-            getDriver().close();
-        }
+        quitDriver();
     }
 }

@@ -12,8 +12,9 @@ public class NoteBooksPage extends AbstractPage {
         return ActionHelper.checkThatAllElementsContainsText(getGoodItemFragment().getGoodsTitle(), searchWord);
     }
 
-    @Step("Check that all goods items have size")
-    public void checkThatGoodsItemsHaveSize(int size) {
-        getGoodItemFragment().checkSizeAllGoodsBodyItems(size);
+    @Step("Get amount of goods")
+    public int checkThatGoodsItemsHaveSize() {
+        getGoodItemFragment().witForAllGoodsBodyItemsArePresent();
+       return getGoodItemFragment().getSizeAllGoodsBodyItems();
     }
 }

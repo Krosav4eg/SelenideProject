@@ -16,7 +16,7 @@ public class NotebooksPageTest extends BaseTest {
     @Description("Verify goods title")
     public void checkNotebooksGoodsTitles() {
         Assert.assertTrue(noteBooksPage.checkThatGoodsTileContainsSearchWord(SEARCH_WORLD.getData()),
-                "Current notebooks goods title isn't equal expected:");
+                String.format("Expected goods don't contain the title : -> '%s'", SEARCH_WORLD.getData()));
     }
 
     @Test()
@@ -25,6 +25,8 @@ public class NotebooksPageTest extends BaseTest {
     @Description("Verify goods size")
     public void checkGoodsItemsSize() {
         int expectedSize = 60;
-        noteBooksPage.checkThatGoodsItemsHaveSize(expectedSize);
+        noteBooksPage.getExponeaBannerFragment().clickExponeaBannerCloseButton();
+        Assert.assertEquals(noteBooksPage.checkThatGoodsItemsHaveSize(), expectedSize,
+                "Actual and expected size don't match: ");
     }
 }

@@ -53,9 +53,13 @@ public class ActionHelper {
         selenideElements.shouldHave(texts(containsText));
     }
 
-    public static ElementsCollection checkThatElementCollectionsHasSize(ElementsCollection selenideElements, int collectionSize) {
-        return selenideElements.shouldHave(
-                CollectionCondition.size(collectionSize));
+//    public static ElementsCollection checkThatElementCollectionsHasSize(ElementsCollection selenideElements, int collectionSize) {
+//        return selenideElements.shouldHave(
+//                CollectionCondition.size(collectionSize));
+//    }
+
+    public static int getSizeAllGoodsBodyItems(ElementsCollection selenideElements) {
+        return selenideElements.size();
     }
 
     public static ElementsCollection checkThatAllElementsAreVisible(ElementsCollection selenideElements) {

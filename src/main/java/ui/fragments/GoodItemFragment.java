@@ -17,8 +17,7 @@ public class GoodItemFragment {
         ActionHelper.checkThatAllElementsAreVisible(goodsBodyItem);
     }
 
-    public void checkSizeAllGoodsBodyItems(int elementsSize) {
-        ActionHelper.checkThatElementCollectionsHasSize(goodsBodyItem, elementsSize);
+    public int getSizeAllGoodsBodyItems() {
+      return  ActionHelper.getSizeAllGoodsBodyItems(goodsBodyItem);
     }
-
 }
