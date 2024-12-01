@@ -8,7 +8,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static api.service.BaseRestService.getResponseSpec;
+import java.time.LocalDate;
+
 import static api.service.BaseRestService.getResponseSpec;
 import static com.jayway.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
@@ -16,7 +17,7 @@ import static org.hamcrest.Matchers.equalTo;
 @Feature("Booking")
 public class BookingTest extends BaseTest {
 
-    private static String bookingId;
+    private String bookingId;
 
     @BeforeClass
     public void getBookingId() {
@@ -40,19 +41,23 @@ public class BookingTest extends BaseTest {
     @Description("Booking: API [Positive] - create booking")
     @Test(priority = 1)
     public void createBookingTest() {
+        String expectedDate = LocalDate.now().toString();
+
         BookingSteps.createNewBooking()
                 .then()
                 .spec(getResponseSpec())
-                .assertThat().body("booking.bookingdates.checkin", equalTo("2022-11-01"))
+                .assertThat().body("booking.bookingdates.checkin", equalTo(expectedDate))
                 .assertThat().body(matchesJsonSchemaInClasspath(PATH_TO_CREATION_BOOKING_RESPONSE_SCHEMA));
     }
 
     @Test(dependsOnMethods = "createBookingTest")
     public void createBookingUsingJsonObjectTest() {
+        String expectedDate = LocalDate.now().plusDays(3).toString();
+
         BookingSteps.createNewBookingUsingJsonObject()
                 .then()
                 .spec(getResponseSpec())
-                .assertThat().body("booking.bookingdates.checkin", equalTo("2022-11-01"))
+                .assertThat().body("booking.bookingdates.checkout", equalTo(expectedDate))
                 .assertThat().body(matchesJsonSchemaInClasspath(PATH_TO_CREATION_BOOKING_RESPONSE_SCHEMA));
     }
 
@@ -61,10 +66,11 @@ public class BookingTest extends BaseTest {
     @Description("Booking: API [Positive] - update booking")
     @Test(priority = 2)
     public void updateBookingTest() {
+        int expectedTotalPrice = 175;
         BookingSteps.updateBooking(bookingId)
                 .then()
                 .spec(getResponseSpec())
-                .assertThat().body("totalprice", equalTo(175));
+                .assertThat().body("totalprice", equalTo(expectedTotalPrice));
     }
 
     @Severity(value = SeverityLevel.CRITICAL)
@@ -72,10 +78,11 @@ public class BookingTest extends BaseTest {
     @Description("Booking: API [Positive] - partial booking update")
     @Test(priority = 3)
     public void partialBookingUpdateTest() {
+        String expectedFirstName = "Jim";
         BookingSteps.partialBookingUpdate(bookingId)
                 .then()
                 .spec(getResponseSpec())
-                .assertThat().body("firstname", equalTo("Jim"));
+                .assertThat().body("firstname", equalTo(expectedFirstName));
     }
 
     @Severity(value = SeverityLevel.CRITICAL)
@@ -94,8 +101,9 @@ public class BookingTest extends BaseTest {
     @Description("Booking: API [Positive] - delete booking by id")
     @Test(priority = 5)
     public void deleteBookingByIdTest() {
+        String expectedBodyMessage = "Created";
         String responseBody = BookingSteps.deleteBookingById(bookingId)
                 .then().assertThat().statusCode(HttpStatus.SC_CREATED).extract().body().asString();
-        Assert.assertEquals(responseBody, "Created");
+        Assert.assertEquals(responseBody, expectedBodyMessage);
     }
 }

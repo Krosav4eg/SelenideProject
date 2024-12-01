@@ -4,6 +4,7 @@ import api.serializableClasses.User;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.aeonbits.owner.ConfigFactory;
@@ -40,10 +41,19 @@ public abstract class BaseRestService {
     }
 
     public static String makeAuthorizationAndGetToken() {
-        return given(getRequestSpecification())
-                .when()
-                .body(new User(PROPS_CONFIG.LOGIN(), PROPS_CONFIG.PASSWORD()))
-                .post("/auth")
-                .then().statusCode(HttpStatus.SC_OK).extract().path("token");
+        try {
+            Response response = given(getRequestSpecification())
+                    .when()
+                    .body(new User(PROPS_CONFIG.LOGIN(), PROPS_CONFIG.PASSWORD()))
+                    .post("/auth");
+
+            if (response.getStatusCode() == HttpStatus.SC_OK) {
+                return response.path("token").toString();
+            } else {
+                throw new RuntimeException("Failed to get token: " + response.getStatusLine());
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Authorization error", e);
+        }
     }
 }

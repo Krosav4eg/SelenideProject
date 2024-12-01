@@ -21,6 +21,6 @@ public class FilterSideFragment {
         SelenideElement element = setRequiredTextIntoXpath(sidebarBrand, brandName);
         element.shouldBe(Condition.enabled).click();
         ActionHelper.isElementSelected(setRequiredTextIntoXpath(sidebarBrand, brandName));
-        return new FilterSideFragment();
+        return this;
     }
 }
