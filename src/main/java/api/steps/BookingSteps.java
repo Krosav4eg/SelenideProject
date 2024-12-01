@@ -1,12 +1,14 @@
 package api.steps;
 
 import api.endpoints.UrlEndPoints;
+import api.service.BookingJsonModificationBuilder;
 import api.service.BookingRestService;
 import com.google.gson.JsonObject;
 import io.restassured.response.Response;
 
+import java.time.LocalDate;
+
 import static api.dto.BookingGenerator.getBookingDto;
-import static api.service.BookingJsonModificationService.generatePriceForJson;
 import static io.restassured.RestAssured.given;
 
 /**
@@ -35,9 +37,13 @@ public class BookingSteps extends BookingRestService {
      * В этом методе тело передаётся как Json Object (используется библиотека JSON)
      */
     public static Response createNewBookingUsingJsonObject() {
+
+        String checkin = LocalDate.now().toString();
+        String checkout = LocalDate.now().plusDays(3).toString();
+
         JsonObject jsonObject2 = new JsonObject();
-        jsonObject2.addProperty("checkin", "2022-11-01");
-        jsonObject2.addProperty("checkout", "2022-11-12");
+        jsonObject2.addProperty("checkin", checkin);
+        jsonObject2.addProperty("checkout", checkout);
 
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("firstname", "Sergey");
@@ -61,10 +67,11 @@ public class BookingSteps extends BookingRestService {
      * Тело запроса меняется путём модификации самого JSON файла
      */
     public static Response createNewBookingWithChangedPrice() {
+        BookingJsonModificationBuilder body = BookingJsonModificationBuilder.fromFile(PATH_TO_NEW_BOOKING_FILE);
         return given()
                 .spec(getRequestSpecification())
                 .when()
-                .body(generatePriceForJson(PATH_TO_NEW_BOOKING_FILE))
+                .body(body.generatePriceForJson().toString())
                 .post(UrlEndPoints.CREATE_BOOKING.getData())
                 .then()
                 .extract()
@@ -75,13 +82,13 @@ public class BookingSteps extends BookingRestService {
      * В этом методе тело передаётся как строка+ в Request spec добавляется составной хэдер
      */
     public static Response updateBooking(String bookingId) {
-        String body = "{\"firstname\":\"Jim\",\"lastname\":\"Brown\",\"totalprice\":175,\"depositpaid\":true,\"bookingdates\":{\"checkin\":\"2022-11-11\",\"checkout\":\"2022-11-12\"},\"additionalneeds\":\"Diner\"}";
-
+        String jsonAsStringBody = "{\"firstname\":\"Jim\",\"lastname\":\"Brown\",\"totalprice\":175,\"depositpaid\":true,\"bookingdates\":{\"checkin\":\"2022-11-11\",\"checkout\":\"2022-11-12\"},\"additionalneeds\":\"Diner\"}";
+        BookingJsonModificationBuilder body = new BookingJsonModificationBuilder(jsonAsStringBody);
         return given()
                 .spec(getRequestSpecificationForBookingUpdate())
                 .when()
                 .and()
-                .body(body)
+                .body(body.toString())
                 .put(UrlEndPoints.UPDATE_BOOKING.getData() + bookingId)
                 .then()
                 .extract()

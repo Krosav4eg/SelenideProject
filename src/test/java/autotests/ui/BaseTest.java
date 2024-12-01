@@ -31,7 +31,7 @@ public class BaseTest {
                         .put("Browser", PROPS.BASE_BROWSER())
                         .put("Browser.Version", "Версия 131.0.6778.86 (Официальная сборка), (64 бит)")
                         .put("OS", "Windows 11")
-                        .put("URL_UI", PROPS.BASE_BROWSER())
+                        .put("URL_UI", PROPS.BASE_URL())
                         .put("URL_API", PROPS.BASE_API_URL())
                         .build());
     }

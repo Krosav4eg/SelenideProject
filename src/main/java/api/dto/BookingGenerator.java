@@ -3,10 +3,15 @@ package api.dto;
 import api.pojo.bookingpojo.BookingCreationPojo;
 import api.pojo.bookingpojo.BookingDatesPojo;
 
+import java.time.LocalDate;
+
 /**
  * Class for creation request bodies.
  */
 public class BookingGenerator {
+
+    static String checkinDate = LocalDate.now().toString();
+    static String checkout = LocalDate.now().plusDays(3).toString();
 
     public static BookingCreationPojo getBookingDto() {
         return BookingCreationPojo.builder()
@@ -20,9 +25,10 @@ public class BookingGenerator {
     }
 
     public static BookingDatesPojo getBookingDatesDto() {
+
         return BookingDatesPojo.builder()
-                .checkin("2022-11-01")
-                .checkout("2022-11-12")
+                .checkin(checkinDate)
+                .checkout(checkout)
                 .build();
     }
 }

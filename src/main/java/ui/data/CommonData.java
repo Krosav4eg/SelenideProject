@@ -8,7 +8,7 @@ import lombok.Getter;
 public enum CommonData {
 
     NOTE_BOOK_BRAND("ASUS"),
-    SEARCH_WORLD("НОУТБУК");
+    SEARCH_WORLD("LAPTOP");
 
     private final String data;
 }

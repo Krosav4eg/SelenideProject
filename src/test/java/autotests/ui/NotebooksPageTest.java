@@ -10,7 +10,7 @@ import static ui.data.CommonData.SEARCH_WORLD;
 @Feature("Notebooks Test")
 public class NotebooksPageTest extends BaseTest {
 
-    @Test()
+    @Test(groups = {"regression", "smoke"})
     @TmsLink("2")
     @Severity(SeverityLevel.MINOR)
     @Description("Verify goods title")
@@ -19,7 +19,7 @@ public class NotebooksPageTest extends BaseTest {
                 String.format("Expected goods don't contain the title : -> '%s'", SEARCH_WORLD.getData()));
     }
 
-    @Test()
+    @Test(groups = {"regression", "smoke"})
     @TmsLink("3")
     @Severity(SeverityLevel.MINOR)
     @Description("Verify goods size")
