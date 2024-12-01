@@ -16,7 +16,7 @@ public class DriverCapabilities {
         options.addArguments("disable-infobars");
         options.addArguments("--disable-extensions");
         options.addArguments("--disable-blink-features=AutomationControlled");
-        options.setCapability("proxy", proxy);
+        options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.5938.62 Safari/537.36");
         options.setExperimentalOption("useAutomationExtension", false);
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         return options;
