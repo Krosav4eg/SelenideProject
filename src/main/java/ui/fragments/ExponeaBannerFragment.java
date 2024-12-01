@@ -13,9 +13,11 @@ public class ExponeaBannerFragment {
 
     SelenideElement exponeaBannerBody = $(byXpath("//div[@class='exponea-banner exponea-survey exponea-animate']"));
     SelenideElement exponeaBannerCloseButton = $(byCssSelector("span.exponea-close-cross"));
+    SelenideElement acceptCookiesButton = $(byCssSelector("#onetrust-accept-btn-handler"));
 
     @Step("Click on close button in exponea banner")
     public void clickExponeaBannerCloseButton() {
+        ActionHelper.clickOnButton(acceptCookiesButton);
         ActionHelper.isElementDisplayed(exponeaBannerBody);
         ActionHelper.clickOnButton(exponeaBannerCloseButton);
     }
