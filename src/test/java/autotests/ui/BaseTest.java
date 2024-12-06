@@ -38,13 +38,18 @@ public class BaseTest {
 
     @BeforeClass(alwaysRun = true)
     public void mainSteps() {
-        WebDriver driver =BrowserFactoryProvider.getInstance().createDriverInstance(PROPS.BASE_BROWSER());
+        WebDriver driver = BrowserFactoryProvider.getInstance().createDriverInstance(PROPS.BASE_BROWSER());
         WebDriverRunner.setWebDriver(driver);
         driver.manage().window().maximize();
         Configuration.timeout = Integer.parseInt(PROPS.WAITING_TIMEOUT());
         Configuration.baseUrl = PROPS.BASE_URL();
         open(Configuration.baseUrl);
         log.info("****** Browser has been started ******");
+        if (noteBooksPage.getExponeaBannerFragment().getExponeaBannerCloseButton().isDisplayed()) {
+            noteBooksPage.getExponeaBannerFragment().clickExponeaBannerCloseButton();
+        } else {
+            log.info("banner close button hasn't displayed");
+        }
     }
 
     @AfterClass(alwaysRun = true)

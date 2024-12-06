@@ -25,7 +25,6 @@ public class NotebooksPageTest extends BaseTest {
     @Description("Verify goods size")
     public void checkGoodsItemsSize() {
         int expectedSize = 60;
-        noteBooksPage.getExponeaBannerFragment().clickExponeaBannerCloseButton();
         Assert.assertEquals(noteBooksPage.checkThatGoodsItemsHaveSize(), expectedSize,
                 "Actual and expected size don't match: ");
     }
