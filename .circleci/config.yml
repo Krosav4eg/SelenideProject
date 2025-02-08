@@ -110,7 +110,6 @@ jobs:
     executor: test-executor
     #There is all custom names which located under 'Commands' section
     steps:
-      - install-browsers
       - restore-and-save-cache
       - running-automation-tests
       - archive-allure-artifacts
