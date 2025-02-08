@@ -17,41 +17,44 @@ parameters:
     type: boolean
     default: true
 
-
 executors:
   test-executor:
     docker:
       - image: cimg/openjdk:11.0.19-browsers
-
     working_directory: ~/SelenideProject
-
     environment:
       MAVEN_OPTS: -Xmx4096m
 
 commands:
-  install-browsers:
-    description: "Checkout to my code and install browsers"
-    steps:
-      - checkout
-      - browser-tools/install-geckodriver
-      - browser-tools/install-firefox
-
 
   restore-and-save-cache:
     description: "Restore and save cache"
     steps:
+      - run:
+          name: Ensure working directory exists
+          command: mkdir -p ~/SelenideProject
+
+      - checkout  # Upload code before cashing
+
+      - run:
+          name: Verify if pom.xml exists
+          command: |
+            if [ ! -f pom.xml ]; then
+              echo "ERROR: pom.xml not found!"
+              exit 1
+            fi
+
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "pom.xml" }}
-            - v1-dependencies-
+            - v2-dependencies-{{ checksum "pom.xml" }}
+            - v2-dependencies-
 
       - run: mvn dependency:go-offline
 
       - save_cache:
           paths:
             - ~/.m2
-
-          key: v1-dependencies-{{ checksum "pom.xml" }}
+          key: v2-dependencies-{{ checksum "pom.xml" }}
 
   running-automation-tests:
     description: "Running automation tests"
@@ -117,7 +120,6 @@ jobs:
     executor: test-executor
     #There is all custom names which located under 'Commands' section
     steps:
-      - install-browsers
       - restore-and-save-cache
       - running-automation-tests
       - archive-allure-artifacts
@@ -125,7 +127,6 @@ jobs:
       - allure-report-generation
       - store-generated-allure-artifacts
       - send-notification-to-slack-channel
-
 
 workflows:
 
@@ -156,5 +157,5 @@ workflows:
     when: << pipeline.parameters.ApiTrigger >>
     jobs:
       - buid_approval:
-            type: approval
+          type: approval
       - automation-tests-running
