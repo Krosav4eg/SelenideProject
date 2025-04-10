@@ -10,8 +10,8 @@ import static com.codeborne.selenide.Selenide.$$;
 
 @Getter
 public class GoodItemFragment {
-    ElementsCollection goodsBodyItem = $$(byCssSelector("div.goods-tile__content"));
-    ElementsCollection goodsTitle = $$(byCssSelector("span.goods-tile__title"));
+    ElementsCollection goodsBodyItem = $$(byCssSelector("rz-product-tile>div.content"));
+    ElementsCollection goodsTitle = $$(byCssSelector("a.tile-title.black-link.text-base"));
 
     public void witForAllGoodsBodyItemsArePresent() {
         ActionHelper.checkThatAllElementsAreVisible(goodsBodyItem);

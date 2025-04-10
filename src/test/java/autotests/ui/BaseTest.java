@@ -45,7 +45,7 @@ public class BaseTest {
         Configuration.baseUrl = PROPS.BASE_URL();
         open(Configuration.baseUrl);
         log.info("****** Browser has been started ******");
-        if (noteBooksPage.getExponeaBannerFragment().getExponeaBannerCloseButton().isDisplayed()) {
+        if (noteBooksPage.getExponeaBannerFragment().getExponeaBannerBody().isDisplayed()) {
             noteBooksPage.getExponeaBannerFragment().clickExponeaBannerCloseButton();
         } else {
             log.info("banner close button hasn't displayed");
