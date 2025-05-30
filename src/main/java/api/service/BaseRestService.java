@@ -31,9 +31,7 @@ public abstract class BaseRestService {
     }
 
     public static ResponseSpecification getResponseSpec() {
-        Map<String, Object> expectedHeadersList = Map.of("Server", "Cowboy", "Connection", "keep-alive",
-                "X-Powered-By", "Express", "Content-Type", "application/json; charset=utf-8",
-                "Via", "1.1 vegur");
+        Map<String, Object> expectedHeadersList = Map.of("Content-Type", "application/json; charset=utf-8");
         return new ResponseSpecBuilder()
                 .expectStatusCode(HttpStatus.SC_OK)
                 .expectHeaders(expectedHeadersList)

@@ -13,7 +13,7 @@
         <selenide.version>6.0.1</selenide.version>
         <selenium-java.version>4.11.0</selenium-java.version>
         <selenium-server.version>3.141.59</selenium-server.version>
-        <webdrivermanager.version>5.4.1</webdrivermanager.version>
+        <webdrivermanager.version>5.5.3</webdrivermanager.version>
         <allure.version>2.13.1</allure.version>
         <allure-testng.version>2.13.1</allure-testng.version>
         <allure-environment-writer>1.0.0</allure-environment-writer>
@@ -75,12 +75,6 @@
         </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>${apache.poi.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>${poi-ooxml.version}</version>
             <scope>compile</scope>
@@ -94,13 +88,6 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${commons-io.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>${webdrivermanager.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.aeonbits.owner</groupId>
@@ -156,7 +143,7 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.5.3</version>
+            <version>${webdrivermanager.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

@@ -15,10 +15,20 @@ import java.util.Arrays;
 
 public class AllureListener implements ITestListener {
 
-
-    @Attachment
+    @Attachment(value = "Screenshot on failure", type = "image/png")
     public byte[] saveFailureScreen() {
         return ((TakesScreenshot) WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES);
+    }
+
+    @Override
+    public void onTestFailure(ITestResult iTestResult) {
+        setTestStatus(iTestResult);
+        // :white_check_mark: Добавляем защиту: проверим, стартовал ли WebDriver
+        if (WebDriverRunner.hasWebDriverStarted()) {
+            saveFailureScreen();
+        } else {
+            System.out.println("[WARN] WebDriver не запущен — скриншот не снят.");
+        }
     }
 
     @Override
@@ -32,13 +42,7 @@ public class AllureListener implements ITestListener {
 
     }
 
-    @Override
-    public void onTestFailure(ITestResult iTestResult) {
-        setTestStatus(iTestResult);
-        saveFailureScreen();
-    }
-
-    @Override
+      @Override
     public void onTestSkipped(ITestResult iTestResult) {
         setTestStatus(iTestResult);
 
