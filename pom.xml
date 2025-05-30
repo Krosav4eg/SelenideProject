@@ -26,8 +26,6 @@
         <testng.version>7.0.0</testng.version>
         <mssql-jdbc.version>12.2.0.jre11</mssql-jdbc.version>
         <lombok.version>1.18.2</lombok.version>
-        <apache.poi.version>5.2.0</apache.poi.version>
-        <poi-ooxml.version>5.2.0</poi-ooxml.version>
         <avax.xml.stream.version>1.0-2</avax.xml.stream.version>
         <commons-io.version>2.11.0</commons-io.version>
         <owner.version>1.0.12</owner.version>
@@ -72,12 +70,6 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>${poi-ooxml.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>javax.xml.stream</groupId>
