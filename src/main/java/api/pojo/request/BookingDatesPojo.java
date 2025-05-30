@@ -1,4 +1,4 @@
-package api.pojo.bookingpojo;
+package api.pojo.request;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Builder;

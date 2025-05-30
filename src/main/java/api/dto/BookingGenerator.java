@@ -1,7 +1,7 @@
 package api.dto;
 
-import api.pojo.bookingpojo.BookingCreationPojo;
-import api.pojo.bookingpojo.BookingDatesPojo;
+import api.pojo.request.BookingCreationPojo;
+import api.pojo.request.BookingDatesPojo;
 
 import java.time.LocalDate;
 

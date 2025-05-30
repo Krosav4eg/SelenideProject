@@ -1,6 +1,5 @@
-package api.pojo.bookingpojo;
+package api.pojo.request;
 
-import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
 import lombok.Data;
 
@@ -17,7 +16,6 @@ public class BookingCreationPojo {
 
     private String lastname;
 
-    @SerializedName("total_price")
     private int totalprice;
 
     private boolean depositpaid;

@@ -1,5 +1,6 @@
 package autotests.api;
 
+import api.pojo.response.BookingResponse;
 import api.steps.BookingSteps;
 import io.qameta.allure.*;
 import io.restassured.response.Response;
@@ -10,8 +11,10 @@ import org.testng.annotations.Test;
 
 import java.time.LocalDate;
 
+import static api.dto.BookingGenerator.getBookingDto;
 import static api.service.BaseRestService.getResponseSpec;
 import static com.jayway.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 @Feature("Booking")
@@ -30,10 +33,26 @@ public class BookingTest extends BaseTest {
     @Description("Booking: API [Positive] - create booking with changed price")
     @Test(priority = 0)
     public void createBookingWithChangedPriceTest() {
-        BookingSteps.createNewBookingWithChangedPrice()
+        // Сначала сохраняем response
+        Response response = BookingSteps.createNewBookingWithChangedPrice()
                 .then()
+                .assertThat()
                 .spec(getResponseSpec())
-                .assertThat().body(matchesJsonSchemaInClasspath(PATH_TO_CREATION_BOOKING_RESPONSE_SCHEMA));
+                .body(matchesJsonSchemaInClasspath(PATH_TO_CREATION_BOOKING_RESPONSE_SCHEMA)) // имя схемы в resources
+                .extract()
+                .response();
+        // Десериализация
+        BookingResponse bookingResponse = response.as(BookingResponse.class);
+        // Проверка имени
+        String actualFirstName = bookingResponse.getBooking().getFirstName();
+        String actualLastName = bookingResponse.getBooking().getLastName();
+        String actualAdditionalNeeds = bookingResponse.getBooking().getAdditionalNeeds();
+        assertThat("Actual first name doesn't match expected :", actualFirstName,
+                equalTo(getBookingDto().getFirstname()));
+        assertThat("Actual last name  doesn't match expected :", actualLastName,
+                equalTo(getBookingDto().getLastname()));
+        assertThat("Actual needs doesn't match expected :", actualAdditionalNeeds,
+                equalTo(getBookingDto().getAdditionalneeds()));
     }
 
     @Severity(value = SeverityLevel.CRITICAL)
