@@ -82,7 +82,16 @@ public class BookingSteps extends BookingRestService {
      * В этом методе тело передаётся как строка+ в Request spec добавляется составной хэдер
      */
     public static Response updateBooking(String bookingId) {
-        String jsonAsStringBody = "{\"firstname\":\"Jim\",\"lastname\":\"Brown\",\"totalprice\":175,\"depositpaid\":true,\"bookingdates\":{\"checkin\":\"2022-11-11\",\"checkout\":\"2022-11-12\"},\"additionalneeds\":\"Diner\"}";
+        String jsonAsStringBody = "" +
+                "{\"firstname\":\"Jim\"," +
+                "\"lastname\":\"Brown\"," +
+                "\"totalprice\":175," +
+                "\"depositpaid\":true," +
+                "\"bookingdates\":" +
+                "{\"checkin\":\"2025-11-11\"," +
+                "\"checkout\":\"2025-11-12\"}," +
+                "\"additionalneeds\":\"Diner\"}" +
+                "";
         BookingJsonModificationBuilder body = new BookingJsonModificationBuilder(jsonAsStringBody);
         return given()
                 .spec(getRequestSpecificationForBookingUpdate())
