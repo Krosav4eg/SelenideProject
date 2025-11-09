@@ -7,6 +7,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import lombok.extern.log4j.Log4j2;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.http.HttpStatus;
 import utils.PropsConfig;
@@ -19,6 +20,7 @@ import static io.restassured.RestAssured.given;
  * This class contains common specification and data which can be reused in specific classes' services.
  */
 
+@Log4j2
 public abstract class BaseRestService {
 
     public static final PropsConfig PROPS_CONFIG = ConfigFactory.create(PropsConfig.class);
@@ -39,6 +41,7 @@ public abstract class BaseRestService {
     }
 
     public static String makeAuthorizationAndGetToken() {
+        log.info("**************- Getting auth token before the test -*****************");
         try {
             Response response = given(getRequestSpecification())
                     .when()
@@ -46,6 +49,7 @@ public abstract class BaseRestService {
                     .post("/auth");
 
             if (response.getStatusCode() == HttpStatus.SC_OK) {
+                log.info("**************- Token was successfully generated -**************");
                 return response.path("token").toString();
             } else {
                 throw new RuntimeException("Failed to get token: " + response.getStatusLine());
