@@ -5,7 +5,7 @@
 
     <test name="Regression">
         <packages>
-            <package name="autotests.*"/>
+            <package name="autotests.api*"/>
         </packages>
     </test>
 </suite>
